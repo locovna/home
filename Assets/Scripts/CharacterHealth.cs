@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CharacterHealth : MonoBehaviour
 {
@@ -9,16 +10,23 @@ public class CharacterHealth : MonoBehaviour
     public float healthLimit = 100;
     public float health = 100;
 
+    private Scene scene;
+
+    // todo: remove the test
+    void Start()
+    {
+        scene = SceneManager.GetActiveScene();
+    }
+
     void Update()
     {
+        // todo: implement death feature
         if(health <= 0)
         {
-            // restart application
-            // todo: use SceneManager.LoadScene
-            // Application.LoadLevel(Application.loadedLevel);
+            SceneManager.LoadScene(scene.name);
         }
 
-        // todo: remove the example
+        // todo: remove the test
         if(Input.GetKeyDown(KeyCode.E))
         {
             TakeDamage(20);
@@ -43,7 +51,6 @@ public class CharacterHealth : MonoBehaviour
     }
 
     // todo: separate UI logic
-    // fix: reference error
     public void UpdateHealthBar()
     {
         healthBar.fillAmount = health / healthLimit;
