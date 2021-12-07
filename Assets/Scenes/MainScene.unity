@@ -1615,6 +1615,7 @@ MonoBehaviour:
   scrollSpeed: 10
   minY: 5
   maxY: 20
+  disableMouseCameraController: 1
 --- !u!4 &991962330 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4620875797842597728, guid: f9add22e0c02342dfba162b62ce41bf0,

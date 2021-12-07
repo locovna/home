@@ -11,7 +11,27 @@ public class CameraController : MonoBehaviour
     public float minY = 5f;
     public float maxY = 20f;
 
+    // todo: refactor cheat functionality
+    public bool disableMouseCameraController = false;
+
     void Update()
+    {
+        #if UNITY_EDITOR 
+        // if true use mouse
+        if(disableMouseCameraController == true)
+        {
+            UpdateCameraPositionWithoutMouse();
+        }
+        else 
+        {
+            UpdateCameraPosition();
+        }
+        #endif
+
+        //UpdateCameraPosition();
+    }
+
+    void UpdateCameraPosition()
     {
         // store current camera position
         Vector3 pos = transform.position;
@@ -29,6 +49,39 @@ public class CameraController : MonoBehaviour
             pos.x += panSpeed * Time.deltaTime;
         }
         if(Input.GetKey("a") || Input.mousePosition.x <= panBorderThickness) 
+        {
+            pos.x -= panSpeed * Time.deltaTime;
+        }
+
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        Camera.main.orthographicSize -= scroll * scrollSpeed * 100f * Time.deltaTime;
+
+        // Mathf.Clamp(value to limit, limit range) 
+        pos.x = Mathf.Clamp(pos.x, -panLimit.x, panLimit.x);
+        pos.z = Mathf.Clamp(pos.z, -panLimit.y, panLimit.y);
+        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, minY, maxY);
+
+        transform.position = pos;
+    }
+
+    void UpdateCameraPositionWithoutMouse()
+    {
+        // store current camera position
+        Vector3 pos = transform.position;
+
+        if(Input.GetKey("w")) 
+        {
+            pos.z += panSpeed * Time.deltaTime;
+        }
+        if(Input.GetKey("s")) 
+        {
+            pos.z -= panSpeed * Time.deltaTime;
+        }
+        if(Input.GetKey("d")) 
+        {
+            pos.x += panSpeed * Time.deltaTime;
+        }
+        if(Input.GetKey("a")) 
         {
             pos.x -= panSpeed * Time.deltaTime;
         }
