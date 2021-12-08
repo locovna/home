@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GetResources : MonoBehaviour
 {
+    public CharacterHealth characterHealth;
+
     void OnCollisionEnter(Collision collisionInfo) 
     {
         if (collisionInfo.collider.tag == "Resource") 
@@ -16,5 +18,11 @@ public class GetResources : MonoBehaviour
             Debug.Log(gameObject.name + " hits " + collisionInfo.collider.name);
         }
 
+        ConsumeResource();
+    }
+
+    void ConsumeResource()
+    {
+        characterHealth.Healing(10f);
     }
 }

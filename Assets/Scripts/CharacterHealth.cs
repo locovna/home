@@ -42,12 +42,14 @@ public class CharacterHealth : MonoBehaviour
     public void TakeDamage(float damagePoints) 
     {
         health -= damagePoints;
+        UpdateHealthBar();
     }
 
     public void Healing(float healPoints)
     {
         health += healPoints;
         health = Mathf.Clamp(health, 0, healthLimit);
+        UpdateHealthBar();
     }
 
     // todo: separate UI logic
