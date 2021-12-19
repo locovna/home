@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 public class CharacterHealth : MonoBehaviour
 {
     public Image healthBar;
-    public float healthLimit = 100;
-    public float health = 100;
+    public float healthLimit = 100f;
+    public float health = 100f;
+    public float universalBaseDamage = 0.01f;
 
     private Scene scene;
 
@@ -20,10 +21,15 @@ public class CharacterHealth : MonoBehaviour
 
     void Update()
     {
-        // todo: implement death feature
         if(health <= 0)
         {
+            // todo: implement death screen
             SceneManager.LoadScene(scene.name);
+        }
+        else
+        {
+            // take damage overtime
+            TakeDamage(universalBaseDamage);
         }
 
         // todo: remove the test

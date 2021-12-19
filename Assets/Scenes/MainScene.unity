@@ -7612,6 +7612,11 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 844275926}
+    - target: {fileID: 6672778660441959649, guid: f9add22e0c02342dfba162b62ce41bf0,
+        type: 3}
+      propertyPath: universalBaseDamage
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6783499740337636113, guid: f9add22e0c02342dfba162b62ce41bf0,
         type: 3}
       propertyPath: whatCanBeClickedOn.m_Bits
