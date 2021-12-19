@@ -5,6 +5,7 @@ using UnityEngine;
 public class GetResources : MonoBehaviour
 {
     public CharacterHealth characterHealth;
+    public float healPoints = 20f;
 
     void OnCollisionEnter(Collision collisionInfo) 
     {
@@ -23,6 +24,6 @@ public class GetResources : MonoBehaviour
 
     void ConsumeResource()
     {
-        characterHealth.Healing(10f);
+        characterHealth.Healing(healPoints);
     }
 }
