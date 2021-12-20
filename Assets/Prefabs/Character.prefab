@@ -237,6 +237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bff83630a462411ba1e365bcd837b8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterHealth: {fileID: 0}
+  healPoints: 20
 --- !u!1 &4620875797842597731
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,8 +325,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
-  healthLimit: 100
-  health: 0
+  healthLimit: 1000
+  health: 100
+  universalBaseDamage: 0.01
 --- !u!1 &4620875797997738620
 GameObject:
   m_ObjectHideFlags: 0
