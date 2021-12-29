@@ -49,7 +49,7 @@ class Example
     [RuntimeInitializeOnLoadMethod]
     static void Main()
     {
-        var testEntity = new Entity(100f, 100f, 10f, "Prikolchik");
+        var testEntity = new Home.Entity(100f, 100f, 10f, "Prikolchik");
         testEntity.Heal(50);
         testEntity.TakeDamage(5);
         Debug.Log($"Hey, {testEntity.name} #{testEntity.id} your health is {testEntity.health}, but base damage is {testEntity.selfDamage}.");
