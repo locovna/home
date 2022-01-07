@@ -10,6 +10,8 @@ namespace Home
         public float speedMultiplier;
         public float damageMultiplier;
 
+        public Character(){}
+
         public Character(float healthLimit, float health, float baseDamage, string name, float speedMultiplier) : base(healthLimit, health, baseDamage, name)
         {
             this.speedMultiplier = speedMultiplier;

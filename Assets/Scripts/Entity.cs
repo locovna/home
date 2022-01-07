@@ -23,6 +23,8 @@ namespace Home
             }
         }
 
+        public Entity(){}
+
         public Entity(float healthLimit, float health, float selfDamage, string name)
         {
             this.id = Helper.GenerateGUID();
