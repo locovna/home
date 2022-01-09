@@ -6,22 +6,45 @@ namespace Home
 {
     public class GameManager : MonoBehaviour
     {
-        public int numberOfCharacters = 10;
-        public List<Character> characterList = new List<Character>();
+        private int numberOfCharacters = 3;
+        public static GameObject characterPrefab;
 
         void Start()
         {
-            CreateCharacters(numberOfCharacters);
-            print(characterList.Count);
+            LoadResources();
+            Generate();
+            Spawn();
+            CharacterManager.PassCharacterData(CharacterManager.characterList[0]);
+            CharacterManager.PassCharacterData(CharacterManager.characterList[1]);
+            CharacterManager.PassCharacterData(CharacterManager.characterList[2]);
         }
 
-        public void CreateCharacters(int quantity)
+        private void LoadResources()
         {
-            for (int i = 0; i < quantity; i++)
-            {
-                Character character = CharacterCreator.CreateCharacter();
-                characterList.Add(character);
-            }
+            characterPrefab = Resources.Load<GameObject>("Prefabs/Character");
+        }
+
+        private void Generate()
+        {
+            CharacterManager.GenerateCharacters(numberOfCharacters);
+        }
+
+        private void Spawn()
+        {
+            SpawnGameObject(CharacterManager.characterList[0].prefab);
+            SpawnGameObject(CharacterManager.characterList[1].prefab);
+            SpawnGameObject(CharacterManager.characterList[2].prefab);
+        }
+
+        public void SpawnGameObject(GameObject gameObject)
+        {
+            float xPosition;
+            float yPosition = 0.5f;
+            float zPosition;
+
+            xPosition = Random.Range(-40, 40);
+            zPosition = Random.Range(-40, 40);
+            gameObject.transform.position = new Vector3(xPosition, yPosition, zPosition);
         }
     }
 }
