@@ -9,8 +9,9 @@ namespace Home
         public static float speed;
         public float speedMultiplier;
         public float damageMultiplier;
+        public GameObject prefab;
 
-        public Character(){}
+        public Character() { }
 
         public Character(float healthLimit, float health, float baseDamage, string name, float speedMultiplier) : base(healthLimit, health, baseDamage, name)
         {
