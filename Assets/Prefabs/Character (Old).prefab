@@ -249,8 +249,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4620875797842597728}
   - component: {fileID: 5850787762288070134}
-  - component: {fileID: 6783499740337636113}
-  - component: {fileID: 6672778660441959649}
   m_Layer: 0
   m_Name: Character (Old)
   m_TagString: Untagged
@@ -297,37 +295,6 @@ NavMeshAgent:
   m_BaseOffset: 1.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6783499740337636113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4620875797842597731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b1bf60eed5a54cff95ae87add5b3d7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whatCanBeClickedOn:
-    serializedVersion: 2
-    m_Bits: 256
---- !u!114 &6672778660441959649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4620875797842597731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 940bdbe2f7eff4e3982151ef1069d992, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  healthLimit: 1000
-  health: 100
-  universalBaseDamage: 0.01
 --- !u!1 &4620875797997738620
 GameObject:
   m_ObjectHideFlags: 0
