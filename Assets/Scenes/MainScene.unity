@@ -6419,7 +6419,7 @@ PrefabInstance:
     - target: {fileID: 2286346055907830768, guid: d43639abdb45c4492a823d32dcdb2c08,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2286346055907830769, guid: d43639abdb45c4492a823d32dcdb2c08,
         type: 3}
@@ -6678,6 +6678,11 @@ PrefabInstance:
         type: 3}
       propertyPath: universalBaseDamage
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6783499740337636113, guid: f9add22e0c02342dfba162b62ce41bf0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6783499740337636113, guid: f9add22e0c02342dfba162b62ce41bf0,
         type: 3}

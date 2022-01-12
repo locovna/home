@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Home
@@ -15,8 +13,9 @@ namespace Home
         static public Character CreateRandomizedCharacter()
         {
             string name = RandomNames[Random.Range(0, RandomNames.Length - 1)];
-            Character createdCharacter = new Character(100f, 100f, 10f, name, 10f);
-            Debug.Log(nameof(CharacterCreator) + " name: " + createdCharacter.name);
+            float randomHealthLimit = Random.Range(100f, 500f);
+            float randomSelfDamage = Random.Range(0f, 2f);
+            Character createdCharacter = new Character(randomHealthLimit, randomHealthLimit, randomSelfDamage, name, 10f);
             return createdCharacter;
         }
     }

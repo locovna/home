@@ -1,22 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Home
 {
     public class GameManager : MonoBehaviour
     {
+        public static GameObject characterPrefab { get; private set; }
         private int numberOfCharacters = 3;
-        public static GameObject characterPrefab;
+        private Scene scene;
 
         void Start()
         {
             LoadResources();
             Generate();
             Spawn();
-            CharacterManager.PassCharacterData(CharacterManager.characterList[0]);
-            CharacterManager.PassCharacterData(CharacterManager.characterList[1]);
-            CharacterManager.PassCharacterData(CharacterManager.characterList[2]);
         }
 
         private void LoadResources()
@@ -27,6 +26,7 @@ namespace Home
         private void Generate()
         {
             CharacterManager.GenerateCharacters(numberOfCharacters);
+            CharacterManager.AllDead += GameOver;
         }
 
         private void Spawn()
@@ -36,7 +36,7 @@ namespace Home
             SpawnGameObject(CharacterManager.characterList[2].prefab);
         }
 
-        public void SpawnGameObject(GameObject gameObject)
+        private void SpawnGameObject(GameObject gameObject)
         {
             float xPosition;
             float yPosition = 0.5f;
@@ -45,6 +45,12 @@ namespace Home
             xPosition = Random.Range(-40, 40);
             zPosition = Random.Range(-40, 40);
             gameObject.transform.position = new Vector3(xPosition, yPosition, zPosition);
+        }
+
+        private void GameOver()
+        {
+            scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
         }
     }
 }

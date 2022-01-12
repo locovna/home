@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-
-namespace Home
+﻿namespace Home
 {
     public class Entity
     {
@@ -12,6 +7,9 @@ namespace Home
         public float selfDamage { get; set; }
         public string name { get; set; }
         private float _health;
+
+        public delegate void DeathDelegate(string id);
+        public event DeathDelegate Death;
 
         public float health
         {
@@ -42,6 +40,8 @@ namespace Home
         public void TakeDamage(float damagePoints)
         {
             this.health -= damagePoints;
+            if (this.health <= 0)
+                Death?.Invoke(this.id);
         }
     }
 }
