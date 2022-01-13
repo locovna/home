@@ -18,6 +18,20 @@ namespace Home
             character.TakeDamage(character.selfDamage);
         }
 
+        void OnCollisionEnter(Collision collisionInfo) 
+        {
+            if (collisionInfo.collider.tag == "Resource") 
+            {
+                Debug.Log(character.name + " hits " + collisionInfo.collider.name);
+                character.Heal(100f);
+                Destroy(collisionInfo.collider.gameObject);
+            }
+            else 
+            {
+                Debug.Log(character.name + " hits " + collisionInfo.collider.name);
+            }
+        }
+
         public void InitializeCharacter(Character characterToInitialize)
         {
             characterToInitialize.Death += Death;
@@ -26,6 +40,15 @@ namespace Home
             Debug.Log($"{gameObject.GetInstanceID()} {character.name} is set. {character.healthLimit} {character.selfDamage}");
         }
 
+        // to fix: no need in id parameter
+        private void Death(string id)
+        {
+            Debug.Log($"{gameObject.GetInstanceID()} {character.name} is dead!");
+            character.Death -= Death;
+            Destroy(gameObject);
+        }
+
+        // move to View Controller
         private void SetUI()
         {
             healthBar = gameObject.GetComponentInChildren<Image>();
@@ -36,14 +59,6 @@ namespace Home
         private void UpdateHealthBar()
         {
             healthBar.fillAmount = character.health / character.healthLimit;
-        }
-
-        // to fix: no need in id parameter
-        private void Death(string id)
-        {
-            Debug.Log($"{gameObject.GetInstanceID()} {character.name} is dead!");
-            character.Death -= Death;
-            Destroy(gameObject);
         }
     }
 }
