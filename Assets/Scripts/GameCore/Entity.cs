@@ -1,25 +1,17 @@
-﻿namespace Home
+﻿using UnityEngine;
+
+namespace Home
 {
     public class Entity
     {
         public string id { get; protected set; }
-        public float healthLimit { get; set; }
-        public float selfDamage { get; set; }
-        public string name { get; set; }
-        private float _health;
+        public float healthLimit { get; protected set; }
+        public float selfDamage { get; protected set; }
+        public string name { get; protected set; }
+        public float health { get; protected set; }
 
         public delegate void DeathDelegate(string id);
         public event DeathDelegate Death;
-
-        public float health
-        {
-            get { return _health; }
-            set
-            {
-                if (value <= healthLimit)
-                    _health = value;
-            }
-        }
 
         public Entity() { }
 
@@ -35,6 +27,7 @@
         public void Heal(float healingPoints)
         {
             this.health += healingPoints;
+            this.health = Mathf.Clamp(health, 0, healthLimit);
         }
 
         public void TakeDamage(float damagePoints)
