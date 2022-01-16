@@ -8,6 +8,7 @@ namespace Home
     public class GameManager : MonoBehaviour
     {
         public static GameObject characterPrefab { get; private set; }
+        public static GameObject resourcePrefab { get; private set; }
         private int numberOfCharacters = 3;
         private Scene scene;
 
@@ -21,19 +22,27 @@ namespace Home
         private void LoadResources()
         {
             characterPrefab = Resources.Load<GameObject>("Prefabs/Character");
+            resourcePrefab = Resources.Load<GameObject>("Prefabs/Resource");
         }
 
         private void Generate()
         {
             CharacterManager.GenerateCharacters(numberOfCharacters);
             CharacterManager.AllDead += GameOver;
+            ResourceManager.GenerateResources();
         }
 
         private void Spawn()
         {
-            SpawnGameObject(CharacterManager.characterList[0].prefab);
-            SpawnGameObject(CharacterManager.characterList[1].prefab);
-            SpawnGameObject(CharacterManager.characterList[2].prefab);
+            for(int i = 0; i < CharacterManager.characterList.Count; i++)
+            {
+                SpawnGameObject(CharacterManager.characterList[i].prefab);
+            }
+
+            for(int i = 0; i < ResourceManager.resources.Count; i++)
+            {
+                SpawnGameObject(ResourceManager.resources[i].prefab);
+            }
         }
 
         private void SpawnGameObject(GameObject gameObject)

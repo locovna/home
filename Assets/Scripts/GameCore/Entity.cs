@@ -13,7 +13,10 @@ namespace Home
         public delegate void DeathDelegate(string id);
         public event DeathDelegate Death;
 
-        public Entity() { }
+        public Entity() 
+        {
+            this.id = Helper.GenerateGUID();
+        }
 
         public Entity(float healthLimit, float health, float selfDamage, string name)
         {

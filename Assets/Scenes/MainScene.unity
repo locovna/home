@@ -6383,7 +6383,7 @@ PrefabInstance:
     - target: {fileID: 2286346055907830768, guid: d43639abdb45c4492a823d32dcdb2c08,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2286346055907830769, guid: d43639abdb45c4492a823d32dcdb2c08,
         type: 3}
@@ -6460,7 +6460,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2286346055907830768, guid: d43639abdb45c4492a823d32dcdb2c08, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d43639abdb45c4492a823d32dcdb2c08, type: 3}
 --- !u!1001 &2536497580346459308
 PrefabInstance:

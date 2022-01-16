@@ -23,8 +23,14 @@ namespace Home
             if (collisionInfo.collider.tag == "Resource") 
             {
                 Debug.Log(character.name + " hits " + collisionInfo.collider.name);
-                character.Heal(100f);
-                Destroy(collisionInfo.collider.gameObject);
+
+                ResourceBehaviour resourceBehaviour = collisionInfo.collider.gameObject.GetComponent<ResourceBehaviour>();
+                if (resourceBehaviour != null)
+                {
+                    resourceBehaviour.ApplyEffects(character);
+                    Destroy(collisionInfo.collider.gameObject);
+                }
+
             }
             else 
             {

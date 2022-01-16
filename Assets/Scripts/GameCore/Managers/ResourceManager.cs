@@ -2,30 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceManager : MonoBehaviour
+namespace Home
 {
-    public GameObject resource;
-    public List<GameObject> resources = new List<GameObject>();
-    float xPosition;
-    float yPosition = 0.5f;
-    float zPosition;
-
-    void Start()
+    public static class ResourceManager
     {
+        public static List<Resource> resources = new List<Resource>();
 
-    }
+        public static void GenerateResources()
+        {
+            Resource resource = ResourceCreator.GenerateResource();
+            resource.prefab = Helper.InstantiateObject(GameManager.resourcePrefab);
+            PassResourceData(resource);
+            resources.Add(resource);
+        }
 
-    void Update()
-    {
-        SpawnResource(resource);
-        // Debug.Log("Total spawned resources: " + resources.Count);
-    }
-
-    void SpawnResource(GameObject resourceToSpawn)
-    {
-        xPosition = Random.Range(-40, 40);
-        zPosition = Random.Range(-40, 40);
-        Instantiate(resourceToSpawn, new Vector3(xPosition, yPosition, zPosition), Quaternion.identity);
-        resources.Add(resourceToSpawn);
+        private static void PassResourceData(Resource resource)
+        {
+            ResourceBehaviour resourceBehaviour= resource.prefab.GetComponent<ResourceBehaviour>();
+            if (resourceBehaviour != null)
+            {
+                resourceBehaviour.InitializeResource(resource);
+            }
+        }
     }
 }
