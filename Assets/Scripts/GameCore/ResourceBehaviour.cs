@@ -6,7 +6,7 @@ namespace Home
 {
     public class ResourceBehaviour : MonoBehaviour
     {
-        private Resource resource;
+        public Resource resource; // private
 
         public void InitializeResource(Resource resourceToInitialize)
         {

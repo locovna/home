@@ -29,8 +29,8 @@ namespace Home
                 {
                     resourceBehaviour.ApplyEffects(character);
                     Destroy(collisionInfo.collider.gameObject);
+                    ResourceManager.resources.Remove(resourceBehaviour.resource); // move to resource manager or resource itself
                 }
-
             }
             else 
             {

@@ -8,12 +8,15 @@ namespace Home
     {
         public static List<Resource> resources = new List<Resource>();
 
-        public static void GenerateResources()
+        public static void GenerateResources(int quantity)
         {
-            Resource resource = ResourceCreator.GenerateResource();
-            resource.prefab = Helper.InstantiateObject(GameManager.resourcePrefab);
-            PassResourceData(resource);
-            resources.Add(resource);
+            for (int i = 0; i < quantity; i++)
+            {
+                Resource resource = ResourceCreator.GenerateResource();
+                resource.prefab = Helper.InstantiateObject(GameManager.resourcePrefab);
+                PassResourceData(resource);
+                resources.Add(resource);
+            }
         }
 
         private static void PassResourceData(Resource resource)

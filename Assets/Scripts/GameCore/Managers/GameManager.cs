@@ -10,6 +10,7 @@ namespace Home
         public static GameObject characterPrefab { get; private set; }
         public static GameObject resourcePrefab { get; private set; }
         private int numberOfCharacters = 3;
+        private int numberOfResources = 50;
         private Scene scene;
 
         void Start()
@@ -29,7 +30,7 @@ namespace Home
         {
             CharacterManager.GenerateCharacters(numberOfCharacters);
             CharacterManager.AllDead += GameOver;
-            ResourceManager.GenerateResources();
+            ResourceManager.GenerateResources(numberOfResources);
         }
 
         private void Spawn()
@@ -58,6 +59,7 @@ namespace Home
 
         private void GameOver()
         {
+            ResourceManager.resources.Clear();
             scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
         }
