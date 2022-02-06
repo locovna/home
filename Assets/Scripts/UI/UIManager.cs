@@ -3,18 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class UIManager : MonoBehaviour
+namespace Home
 {
-    public GameObject MainBar;
-    public TextMeshProUGUI healthBar;
-
-    void Update()
+    public class UIManager : MonoBehaviour
     {
-        UpdateText(healthBar, "000");
-    }
+        public TextMeshProUGUI colonySizeText;
+        public TextMeshProUGUI daysAliveText;
+        private int days = 0;
 
-    void UpdateText(TextMeshProUGUI textMeshProObject, string text)
-    {
-        textMeshProObject.text = text;
+        void Start()
+        {
+            StartCoroutine(DaysCountingCoroutine());
+        }
+
+        void Update()
+        {
+            UpdateText(colonySizeText, CharacterManager.characterList.Count.ToString());
+            UpdateText(daysAliveText, days.ToString());
+        }
+
+        void UpdateText(TextMeshProUGUI textMeshProObject, string text)
+        {
+            textMeshProObject.text = text;
+        }
+
+        IEnumerator DaysCountingCoroutine()
+        {
+            WaitForSeconds wait = new WaitForSeconds(20);
+ 
+            while(true)
+            {
+                days += 1;
+                yield return wait;
+            }
+        }
     }
 }
