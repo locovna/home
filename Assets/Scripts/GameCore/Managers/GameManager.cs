@@ -11,14 +11,24 @@ namespace Home
 
         public static GameObject characterPrefab { get; private set; }
         public static GameObject resourcePrefab { get; private set; }
-        private int numberOfCharacters = 10;
-        private int numberOfResources = 500;
+        private int maxNumberOfCharacters = 15;
+        private int numberOfResources = 200;
 
         void Start()
         {
             LoadResources();
             Generate();
-            Spawn();
+            SpawnCharacters();
+            SpawnResources();
+        }
+
+        void Update()
+        {
+            if(ResourceManager.resources.Count <= numberOfResources/4)
+            {
+                ResourceManager.GenerateResources(numberOfResources/Random.Range(2, 5));
+                SpawnResources();
+            }
         }
 
         private void LoadResources()
@@ -29,18 +39,41 @@ namespace Home
 
         private void Generate()
         {
-            CharacterManager.GenerateCharacters(numberOfCharacters);
+            CharacterManager.GenerateCharacters(Random.Range(2, maxNumberOfCharacters));
             CharacterManager.AllDead += GameOver;
             ResourceManager.GenerateResources(numberOfResources);
         }
 
-        private void Spawn()
+        private void GameOver()
+        {
+            ResourceManager.resources.Clear();
+            if (deathPopup != null)
+            {    
+                deathPopup.SetActive(true);
+            }
+        }
+
+        // Scene Manager
+        public void LoadStartScene()
+        {
+            if (deathPopup != null)
+            {    
+                deathPopup.SetActive(false);
+            }
+            SceneManager.LoadScene(0);
+        }
+
+        // Spawn Manager
+        private void SpawnCharacters()
         {
             for(int i = 0; i < CharacterManager.characterList.Count; i++)
             {
                 SpawnGameObject(CharacterManager.characterList[i].prefab);
             }
+        }
 
+        private void SpawnResources()
+        {
             for(int i = 0; i < ResourceManager.resources.Count; i++)
             {
                 SpawnGameObject(ResourceManager.resources[i].prefab);
@@ -56,24 +89,6 @@ namespace Home
             xPosition = Random.Range(-120, 80);
             zPosition = Random.Range(-110, 60);
             gameObject.transform.position = new Vector3(xPosition, yPosition, zPosition);
-        }
-
-        private void GameOver()
-        {
-            ResourceManager.resources.Clear();
-            if (deathPopup != null)
-            {    
-                deathPopup.SetActive(true);
-            }
-        }
-
-        public void LoadStartScene()
-        {
-            if (deathPopup != null)
-            {    
-                deathPopup.SetActive(false);
-            }
-            SceneManager.LoadScene(0);
         }
     }
 }
