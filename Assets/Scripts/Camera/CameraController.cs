@@ -16,19 +16,7 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        #if UNITY_EDITOR 
-        // if true use mouse
-        if(disableMouseCameraController == true)
-        {
-            UpdateCameraPositionWithoutMouse();
-        }
-        else 
-        {
-            UpdateCameraPosition();
-        }
-        #endif
-
-        //UpdateCameraPosition();
+        UpdateCameraPosition();
     }
 
     void UpdateCameraPosition()

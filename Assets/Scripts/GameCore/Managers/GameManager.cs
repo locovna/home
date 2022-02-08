@@ -88,7 +88,10 @@ namespace Home
 
             xPosition = Random.Range(-120, 80);
             zPosition = Random.Range(-110, 60);
-            gameObject.transform.position = new Vector3(xPosition, yPosition, zPosition);
+            if(gameObject != null)
+            {
+                gameObject.transform.position = new Vector3(xPosition, yPosition, zPosition);
+            }
         }
     }
 }
