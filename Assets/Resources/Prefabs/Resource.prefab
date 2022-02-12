@@ -123,3 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f428c5785a6134e85b7589263e27494f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorTexture: {fileID: 2800000, guid: 7293afe3c37e4492b8e086a0cc7bc22f, type: 3}
+  cursorMode: 1
+  hotSpot: {x: 0, y: 0}
