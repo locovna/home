@@ -19,7 +19,7 @@ namespace Home
 
         void Update()
         {
-            MoveToClick();
+            // MoveToClick();
         }
 
         private void MoveToClick()
@@ -33,6 +33,11 @@ namespace Home
                     agentCharacter.SetDestination(hitInfo.point);
                 }
             }
+        }
+
+        public void MoveToPoint(Vector3 point)
+        {
+            agentCharacter.SetDestination(point);
         }
     }
 }

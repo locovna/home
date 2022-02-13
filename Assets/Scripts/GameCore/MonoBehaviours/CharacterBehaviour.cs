@@ -15,7 +15,9 @@ namespace Home
         void Update()
         {
             UpdateHealthBar();
-            character.TakeDamage(character.selfDamage);
+            // character.TakeDamage(character.selfDamage);
+
+            // ListenToNewTask()
         }
 
         void OnCollisionEnter(Collision collisionInfo) 
