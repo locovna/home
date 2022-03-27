@@ -9,11 +9,9 @@ namespace Home
         public Resource resource;
         public bool active = false;
 
-        public Texture2D cursorTexture;
-        public CursorMode cursorMode = CursorMode.ForceSoftware;
-        public Vector2 hotSpot = Vector2.zero;
+        public delegate void ResourceActivationDelegate();
+        public event ResourceActivationDelegate Canceled;
 
-        Color colorHower = Color.red;
         Color colorClicked = Color.green;
         Color colorInitial;
         Renderer rendererComponent;
@@ -24,31 +22,18 @@ namespace Home
             colorInitial = rendererComponent.material.GetColor("_Color");
         }
 
-        void OnMouseEnter()
+        public void ClickOnResource()
         {
-            Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-        }
-
-        void OnMouseExit()
-        {
-            Cursor.SetCursor(null, hotSpot, cursorMode);
-            if (active == false)
-            {
-                rendererComponent.material.color = colorInitial;
-            }
-        }
-
-        void OnMouseDown()
-        {
-            if (active == false)
+            if (!active)
             {
                 active = true;
                 rendererComponent.material.color = colorClicked;
             }
-            else
+            else 
             {
                 active = false;
                 rendererComponent.material.color = colorInitial;
+                Canceled?.Invoke();
             }
         }
 

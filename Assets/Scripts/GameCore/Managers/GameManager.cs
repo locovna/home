@@ -12,7 +12,7 @@ namespace Home
         public static GameObject characterPrefab { get; private set; }
         public static GameObject resourcePrefab { get; private set; }
         private int maxNumberOfCharacters = 15;
-        private int numberOfResources = 200;
+        private int numberOfResources = 150;
 
         void Start()
         {
@@ -24,11 +24,7 @@ namespace Home
 
         void Update()
         {
-            if(ResourceManager.resources.Count <= numberOfResources/4)
-            {
-                ResourceManager.GenerateResources(numberOfResources/Random.Range(2, 5));
-                SpawnResources();
-            }
+            ControlNumberOfResources();
         }
 
         private void LoadResources()
@@ -39,7 +35,7 @@ namespace Home
 
         private void Generate()
         {
-            CharacterManager.GenerateCharacters(Random.Range(2, maxNumberOfCharacters));
+            CharacterManager.GenerateCharacters(Random.Range(4, maxNumberOfCharacters));
             CharacterManager.AllDead += GameOver;
             ResourceManager.GenerateResources(numberOfResources);
         }
@@ -86,11 +82,20 @@ namespace Home
             float yPosition = 5f;
             float zPosition;
 
-            xPosition = Random.Range(-120, 80);
-            zPosition = Random.Range(-110, 60);
+            xPosition = Random.Range(-30, 30);
+            zPosition = Random.Range(-30, 30);
             if(gameObject != null)
             {
                 gameObject.transform.position = new Vector3(xPosition, yPosition, zPosition);
+            }
+        }
+
+        private void ControlNumberOfResources()
+        {
+            if(ResourceManager.resources.Count <= numberOfResources/4)
+            {
+                ResourceManager.GenerateResources(numberOfResources/Random.Range(2, 5));
+                SpawnResources();
             }
         }
     }

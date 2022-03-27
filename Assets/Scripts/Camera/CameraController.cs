@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        UpdateCameraPosition();
+        UpdateCameraPositionWithoutMouse();
     }
 
     void UpdateCameraPosition()

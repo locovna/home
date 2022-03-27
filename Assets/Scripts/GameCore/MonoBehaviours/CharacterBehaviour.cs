@@ -9,17 +9,17 @@ namespace Home
     public class CharacterBehaviour : MonoBehaviour
     {
         private Character character;
+        public bool isOnTask = false;
         private TextMeshProUGUI text;
         private Image healthBar;
 
         void Update()
         {
             UpdateHealthBar();
-            // character.TakeDamage(character.selfDamage);
-
-            // ListenToNewTask()
+            character.TakeDamage(character.selfDamage);
         }
 
+        // "Eat" task - to refactor
         void OnCollisionEnter(Collision collisionInfo) 
         {
             if (collisionInfo.collider.tag == "Resource") 
@@ -32,6 +32,7 @@ namespace Home
                     resourceBehaviour.ApplyEffects(character);
                     Destroy(collisionInfo.collider.gameObject);
                     ResourceManager.resources.Remove(resourceBehaviour.resource); // move to resource manager or resource itself
+                    isOnTask = false;
                 }
             }
             else 
