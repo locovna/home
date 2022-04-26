@@ -140,6 +140,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameCamera: {fileID: 1425676629}
+  whatCanBeClickedOn:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &51944755
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +552,7 @@ GameObject:
   - component: {fileID: 213542916}
   - component: {fileID: 213542915}
   m_Layer: 5
-  m_Name: StoreButton
+  m_Name: SelectIdleButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -617,7 +620,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 213542916}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 34114406}
+        m_MethodName: TaskSelectIdle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &213542916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1229,7 +1243,7 @@ PrefabInstance:
     - target: {fileID: 2143462592813817731, guid: 05a0be5f6c92843af9d06802ad81b04e,
         type: 3}
       propertyPath: m_text
-      value: 'Food for days:'
+      value: 'Food:'
       objectReference: {fileID: 0}
     - target: {fileID: 2143462592813817731, guid: 05a0be5f6c92843af9d06802ad81b04e,
         type: 3}
@@ -1356,7 +1370,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 488837960}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 34114406}
+        m_MethodName: TaskMoveToClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &488837960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1653,9 +1678,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2286346055907830771, guid: d43639abdb45c4492a823d32dcdb2c08,
-          type: 3}
-        m_MethodName: Eat
+      - m_Target: {fileID: 34114406}
+        m_MethodName: TaskEat
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2132,7 +2156,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 899932056}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 34114406}
+        m_MethodName: TaskStore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &899932056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2263,7 +2298,7 @@ GameObject:
   - component: {fileID: 984149916}
   - component: {fileID: 984149915}
   m_Layer: 5
-  m_Name: EatButton
+  m_Name: SelectAllButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2332,9 +2367,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2286346055907830771, guid: d43639abdb45c4492a823d32dcdb2c08,
-          type: 3}
-        m_MethodName: Eat
+      - m_Target: {fileID: 34114406}
+        m_MethodName: TaskSelectAll
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
