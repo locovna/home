@@ -11,11 +11,9 @@ namespace Home
         private Resource currentResource = null;
         public LayerMask whatCanBeClickedOn;
 
-        private string currentTask = null;
-
         void Update()
         {
-            if (currentTask == "MOVE")
+            if (TaskManager.currentTask == "MOVE")
             {
                 Debug.Log("Listen to MOVE task");
                 // if click hits the ground, move any character to the point
@@ -30,9 +28,9 @@ namespace Home
                     }
                 }
             }
-            else if (currentTask == "EAT")
+            else if (TaskManager.currentTask == "EAT" || TaskManager.currentTask == "STORE")
             {
-                Debug.Log("Listen to EAT task");
+                Debug.Log("Listen to EAT or STORE task");
                 // if click hits resource, move any character to the resource
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -47,23 +45,30 @@ namespace Home
 
                         if (clickedResource.active)
                         {
+                            if(TaskManager.currentTask == "EAT")
                             Eat(clickedResource);
+                            else
+                            Store(clickedResource);
                         }
                     }
                 }
             }
-            else if (currentTask == "STORE")
-            {
-                Debug.Log("Listen to STORE task");
-            }
             else
             {
-                currentTask = null;
+                TaskManager.currentTask = null;
             }
         }
 
         private void Eat(ResourceBehaviour resourceToEat)
         {
+            var movementController = GetAnyCharacter().prefab.GetComponent<MovementController>();
+            movementController.MoveToPoint(resourceToEat.transform.position);
+            resourceToEat.Canceled += movementController.Idle;
+        }
+
+        private void Store(ResourceBehaviour resourceToEat)
+        {
+            Debug.Log("Store is called");
             var movementController = GetAnyCharacter().prefab.GetComponent<MovementController>();
             movementController.MoveToPoint(resourceToEat.transform.position);
             resourceToEat.Canceled += movementController.Idle;
@@ -76,17 +81,17 @@ namespace Home
 
         public void TaskMoveToClick()
         {
-            currentTask = "MOVE";
+            TaskManager.currentTask = "MOVE";
         }
 
         public void TaskEat()
         {
-            currentTask = "EAT";
+            TaskManager.currentTask = "EAT";
         }
 
         public void TaskStore()
         {
-            currentTask = "STORE";
+            TaskManager.currentTask = "STORE";
         }
 
         public void TaskSelectAll()
@@ -98,5 +103,11 @@ namespace Home
         {
             Debug.Log("Select Idle");
         }
+    }
+
+    public static class TaskManager
+    {
+        // static string[] Tasks = {"MOVE", "EAT", "STORE"};
+        static public string currentTask;
     }
 }

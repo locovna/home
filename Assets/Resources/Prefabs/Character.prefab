@@ -297,6 +297,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOnTask: 0
+  storageObject: {fileID: 64905341749595530, guid: a4cfecbf9ef934586be674093cb2ae37,
+    type: 3}
 --- !u!114 &2462654726960878787
 MonoBehaviour:
   m_ObjectHideFlags: 0

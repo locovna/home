@@ -10,8 +10,15 @@ namespace Home
     {
         private Character character;
         public bool isOnTask = false;
+        public GameObject storageObject;
         private TextMeshProUGUI text;
         private Image healthBar;
+        private MovementController movementController;
+
+        void Start()
+        {
+            movementController = GetComponent<MovementController>();
+        }
 
         void Update()
         {
@@ -19,23 +26,32 @@ namespace Home
             character.TakeDamage(character.selfDamage);
         }
 
-        // "Eat" task - to refactor
-        void OnCollisionEnter(Collision collisionInfo) 
+        // "Eat" and "Store" task - to refactor
+        void OnCollisionEnter(Collision collisionInfo)
         {
-            if (collisionInfo.collider.tag == "Resource") 
+            if (collisionInfo.collider.tag == "Resource")
             {
                 Debug.Log(character.name + " hits " + collisionInfo.collider.name);
 
                 ResourceBehaviour resourceBehaviour = collisionInfo.collider.gameObject.GetComponent<ResourceBehaviour>();
                 if (resourceBehaviour != null)
                 {
-                    resourceBehaviour.ApplyEffects(character);
-                    Destroy(collisionInfo.collider.gameObject);
-                    ResourceManager.resources.Remove(resourceBehaviour.resource); // move to resource manager or resource itself
-                    isOnTask = false;
+                    if (TaskManager.currentTask == "EAT")
+                    {
+                        resourceBehaviour.ApplyEffects(character);
+                        Destroy(collisionInfo.collider.gameObject);
+                        ResourceManager.resources.Remove(resourceBehaviour.resource); // move to resource manager or resource itself
+                        isOnTask = false;
+                    }
+                    else if (TaskManager.currentTask == "STORE")
+                    {
+                        // grab the resource, move it to storage, drop
+                        Debug.Log("Store task is on CharacterBeh");
+                        movementController.MoveToPoint(storageObject.transform.position);
+                    }
                 }
             }
-            else 
+            else
             {
                 Debug.Log(character.name + " hits " + collisionInfo.collider.name);
             }
