@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -121,28 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 63810154147c943488177a5b2d940a0d, type: 2}
---- !u!1 &34114402 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2286346055907830798, guid: d43639abdb45c4492a823d32dcdb2c08,
-    type: 3}
-  m_PrefabInstance: {fileID: 2286346054582665201}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &34114406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34114402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c56b81bb4efab49fa9840448ba6d7604, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameCamera: {fileID: 1425676629}
-  whatCanBeClickedOn:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!1 &51944755
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +599,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 34114406}
+      - m_Target: {fileID: 0}
         m_MethodName: TaskSelectIdle
         m_Mode: 1
         m_Arguments:
@@ -1099,7 +1077,7 @@ Transform:
   - {fileID: 1920474007}
   - {fileID: 636419284}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &345686473 stripped
 MonoBehaviour:
@@ -1371,7 +1349,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 34114406}
+      - m_Target: {fileID: 0}
         m_MethodName: TaskMoveToClick
         m_Mode: 1
         m_Arguments:
@@ -1495,6 +1473,53 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
+--- !u!1 &575320327
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 575320329}
+  - component: {fileID: 575320328}
+  m_Layer: 0
+  m_Name: Input Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &575320328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575320327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c56b81bb4efab49fa9840448ba6d7604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameCamera: {fileID: 1425676629}
+  _groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!4 &575320329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575320327}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &636419280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1678,7 +1703,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 34114406}
+      - m_Target: {fileID: 0}
         m_MethodName: TaskEat
         m_Mode: 1
         m_Arguments:
@@ -2157,7 +2182,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 34114406}
+      - m_Target: {fileID: 0}
         m_MethodName: TaskStore
         m_Mode: 1
         m_Arguments:
@@ -2367,7 +2392,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 34114406}
+      - m_Target: {fileID: 0}
         m_MethodName: TaskSelectAll
         m_Mode: 1
         m_Arguments:
@@ -7454,7 +7479,7 @@ RectTransform:
   - {fileID: 147223418}
   - {fileID: 1372487737}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7836,7 +7861,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1437339515
 Rigidbody:
@@ -8137,7 +8162,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1689052732
 GameObject:
@@ -9096,7 +9121,7 @@ PrefabInstance:
     - target: {fileID: 2286346055907830769, guid: d43639abdb45c4492a823d32dcdb2c08,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2286346055907830769, guid: d43639abdb45c4492a823d32dcdb2c08,
         type: 3}
