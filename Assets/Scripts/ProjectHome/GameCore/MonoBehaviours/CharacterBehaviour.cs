@@ -36,14 +36,14 @@ namespace Home
                 ResourceBehaviour resourceBehaviour = collisionInfo.collider.gameObject.GetComponent<ResourceBehaviour>();
                 if (resourceBehaviour != null)
                 {
-                    if (TaskManager.currentTask == "EAT")
+                    if (TaskManager.currentTask == ETaskType.Eat)
                     {
                         resourceBehaviour.ApplyEffects(character);
                         Destroy(collisionInfo.collider.gameObject);
                         ResourceManager.resources.Remove(resourceBehaviour.resource); // move to resource manager or resource itself
                         isOnTask = false;
                     }
-                    else if (TaskManager.currentTask == "STORE")
+                    else if (TaskManager.currentTask == ETaskType.Store)
                     {
                         // grab the resource, move it to storage, drop
                         Debug.Log("Store task is on CharacterBeh");

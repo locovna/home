@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Home
@@ -11,17 +12,13 @@ namespace Home
         {
             switch (TaskManager.currentTask)
             {
-                case "MOVE":
+                case ETaskType.Move:
                     PerformMoveTask();
                     break;
 
-                case "EAT":
-                case "STORE":
+                case ETaskType.Eat:
+                case ETaskType.Store:
                     PerformEatOrStore();
-                    break;
-
-                default:
-                    TaskManager.currentTask = null;
                     break;
             }
         }
@@ -30,25 +27,24 @@ namespace Home
         {
             Debug.Log("Listen to EAT or STORE task");
             // if click hits resource, move any character to the resource
-            if (Input.GetMouseButtonDown(0))
+            if (!Input.GetMouseButtonDown(0))
+                return;
+
+            if (!Physics.Raycast(GetCameraRay(), out var hit))
+                return;
+
+            if (!hit.collider.TryGetComponent<ResourceBehaviour>(out var resource))
+                return;
+
+            Debug.Log("resource is clicked");
+            resource.ClickOnResource();
+
+            if (resource.active)
             {
-                var ray = _gameCamera.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out var hit))
-                {
-                    if (!hit.collider.TryGetComponent<ResourceBehaviour>(out var resource))
-                        return;
-
-                    Debug.Log("resource is clicked");
-                    resource.ClickOnResource();
-
-                    if (resource.active)
-                    {
-                        if (TaskManager.currentTask == "EAT")
-                            Eat(resource);
-                        else
-                            Store(resource);
-                    }
-                }
+                if (TaskManager.currentTask == ETaskType.Eat)
+                    Eat(resource);
+                else
+                    Store(resource);
             }
         }
 
@@ -56,21 +52,19 @@ namespace Home
         {
             Debug.Log("Listen to MOVE task");
             // if click hits the ground, move any character to the point
-            if (Input.GetMouseButtonDown(0))
+            if (!Input.GetMouseButtonDown(0))
+                return;
+
+            if (Physics.Raycast(GetCameraRay(), out var hitInfo, 100, _groundLayerMask))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hitInfo;
-                if (Physics.Raycast(ray, out hitInfo, 100, _groundLayerMask))
-                {
-                    var movementController = GetAnyCharacter().prefab.GetComponent<MovementController>();
-                    movementController.MoveToPoint(hitInfo.point);
-                }
+                var movementController = CharacterManager.GetAnyCharacterMovementController();
+                movementController.MoveToPoint(hitInfo.point);
             }
         }
 
         private void Eat(ResourceBehaviour resourceToEat)
         {
-            var movementController = GetAnyCharacter().prefab.GetComponent<MovementController>();
+            var movementController = CharacterManager.GetAnyCharacterMovementController();
             movementController.MoveToPoint(resourceToEat.transform.position);
             resourceToEat.Canceled += movementController.Idle;
         }
@@ -78,14 +72,14 @@ namespace Home
         private void Store(ResourceBehaviour resourceToEat)
         {
             Debug.Log("Store is called");
-            var movementController = GetAnyCharacter().prefab.GetComponent<MovementController>();
+            var movementController = CharacterManager.GetAnyCharacterMovementController();
             movementController.MoveToPoint(resourceToEat.transform.position);
             resourceToEat.Canceled += movementController.Idle;
         }
 
-        private Character GetAnyCharacter()
+        private Ray GetCameraRay()
         {
-            return CharacterManager.characterList[Random.Range(0, CharacterManager.characterList.Count)];
+            return _gameCamera.ScreenPointToRay(Input.mousePosition);
         }
     }
 }

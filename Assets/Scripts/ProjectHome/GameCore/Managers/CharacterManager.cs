@@ -9,6 +9,7 @@ namespace Home
         public static List<Character> characterList = new List<Character>();
 
         public delegate void CharacterManagerDelegate();
+
         public static event CharacterManagerDelegate AllDead;
 
         public static void GenerateCharacters(int quantity)
@@ -46,6 +47,13 @@ namespace Home
                 Debug.Log("All Dead!");
                 AllDead?.Invoke();
             }
+        }
+
+        public static MovementController GetAnyCharacterMovementController()
+        {
+            var index = Random.Range(0, characterList.Count);
+            var character = characterList[index];
+            return character.prefab.GetComponent<MovementController>();
         }
     }
 }

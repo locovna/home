@@ -1,8 +1,14 @@
 ﻿namespace Home
 {
+    public enum ETaskType
+    {
+        Move,
+        Eat,
+        Store
+    }
+    
     public static class TaskManager
     {
-        // static string[] Tasks = {"MOVE", "EAT", "STORE"};
-        static public string currentTask;
+        public static ETaskType currentTask = ETaskType.Eat;
     }
 }
