@@ -87,15 +87,5 @@ namespace Home
         {
             return CharacterManager.characterList[Random.Range(0, CharacterManager.characterList.Count)];
         }
-
-        public void TaskSelectAll()
-        {
-            Debug.Log("Select All");
-        }
-
-        public void TaskSelectIdle()
-        {
-            Debug.Log("Select Idle");
-        }
     }
 }
