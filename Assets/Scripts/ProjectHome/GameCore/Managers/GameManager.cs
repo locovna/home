@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using ProjectHome.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,18 +8,16 @@ namespace Home
 {
     public class GameManager : MonoBehaviour
     {
-        public GameObject deathPopup;
+        [SerializeField] private CoreGameDataContainer _coreGameDataContainer;
+        [SerializeField] private CharacterManager _characterManager;
 
-        public static GameObject characterPrefab { get; private set; }
-        public static GameObject resourcePrefab { get; private set; }
+        public GameObject deathPopup;
         private int maxNumberOfCharacters = 15;
         private int numberOfResources = 150;
 
         void Start()
         {
-            LoadResources();
             Generate();
-            SpawnCharacters();
             SpawnResources();
         }
 
@@ -27,24 +26,37 @@ namespace Home
             ControlNumberOfResources();
         }
 
-        private void LoadResources()
-        {
-            characterPrefab = Resources.Load<GameObject>("Prefabs/Character");
-            resourcePrefab = Resources.Load<GameObject>("Prefabs/Resource");
-        }
-
         private void Generate()
         {
-            CharacterManager.GenerateCharacters(Random.Range(4, maxNumberOfCharacters));
-            CharacterManager.AllDead += GameOver;
-            ResourceManager.GenerateResources(numberOfResources);
+            SpawnCharacters();
+
+            GenerateResources();
+        }
+
+        private void GenerateResources()
+        {
+            ResourceManager.GenerateResources(numberOfResources, _coreGameDataContainer.ResourcePrefab);
+        }
+
+        private void SpawnCharacters()
+        {
+            var charactersAmount = Random.Range(4, maxNumberOfCharacters);
+            var prefabs =
+                _characterManager.GenerateCharacterPrefabs(charactersAmount, _coreGameDataContainer.CharacterBehaviour);
+
+            foreach (var prefab in prefabs)
+            {
+                PlaceGameObjectRandomly(prefab.gameObject);
+            }
+
+            _characterManager.OnAllCharactersDead += GameOver;
         }
 
         private void GameOver()
         {
             ResourceManager.resources.Clear();
             if (deathPopup != null)
-            {    
+            {
                 deathPopup.SetActive(true);
             }
         }
@@ -53,30 +65,22 @@ namespace Home
         public void LoadStartScene()
         {
             if (deathPopup != null)
-            {    
+            {
                 deathPopup.SetActive(false);
             }
-            SceneManager.LoadScene(0);
-        }
 
-        // Spawn Manager
-        private void SpawnCharacters()
-        {
-            for(int i = 0; i < CharacterManager.characterList.Count; i++)
-            {
-                SpawnGameObject(CharacterManager.characterList[i].prefab);
-            }
+            SceneManager.LoadScene(0);
         }
 
         private void SpawnResources()
         {
-            for(int i = 0; i < ResourceManager.resources.Count; i++)
+            for (int i = 0; i < ResourceManager.resources.Count; i++)
             {
-                SpawnGameObject(ResourceManager.resources[i].prefab);
+                PlaceGameObjectRandomly(ResourceManager.resources[i].prefab);
             }
         }
 
-        private void SpawnGameObject(GameObject gameObject)
+        private void PlaceGameObjectRandomly(GameObject go)
         {
             float xPosition;
             float yPosition = 5f;
@@ -84,17 +88,18 @@ namespace Home
 
             xPosition = Random.Range(-30, 30);
             zPosition = Random.Range(-30, 30);
-            if(gameObject != null)
+            if (go != null)
             {
-                gameObject.transform.position = new Vector3(xPosition, yPosition, zPosition);
+                go.transform.position = new Vector3(xPosition, yPosition, zPosition);
             }
         }
 
         private void ControlNumberOfResources()
         {
-            if(ResourceManager.resources.Count <= numberOfResources/4)
+            if (ResourceManager.resources.Count <= numberOfResources / 4)
             {
-                ResourceManager.GenerateResources(numberOfResources/Random.Range(2, 5));
+                ResourceManager.GenerateResources(numberOfResources / Random.Range(2, 5),
+                    _coreGameDataContainer.ResourcePrefab);
                 SpawnResources();
             }
         }

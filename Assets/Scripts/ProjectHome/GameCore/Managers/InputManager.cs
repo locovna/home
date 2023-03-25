@@ -7,6 +7,7 @@ namespace Home
     {
         [SerializeField] private Camera _gameCamera;
         [SerializeField] private LayerMask _groundLayerMask;
+        [SerializeField] private CharacterManager _characterManager;
 
         private void Update()
         {
@@ -57,14 +58,14 @@ namespace Home
 
             if (Physics.Raycast(GetCameraRay(), out var hitInfo, 100, _groundLayerMask))
             {
-                var movementController = CharacterManager.GetAnyCharacterMovementController();
+                var movementController = _characterManager.GetAnyCharacterMovementController();
                 movementController.MoveToPoint(hitInfo.point);
             }
         }
 
         private void Eat(ResourceBehaviour resourceToEat)
         {
-            var movementController = CharacterManager.GetAnyCharacterMovementController();
+            var movementController = _characterManager.GetAnyCharacterMovementController();
             movementController.MoveToPoint(resourceToEat.transform.position);
             resourceToEat.Canceled += movementController.Idle;
         }
@@ -72,7 +73,7 @@ namespace Home
         private void Store(ResourceBehaviour resourceToEat)
         {
             Debug.Log("Store is called");
-            var movementController = CharacterManager.GetAnyCharacterMovementController();
+            var movementController = _characterManager.GetAnyCharacterMovementController();
             movementController.MoveToPoint(resourceToEat.transform.position);
             resourceToEat.Canceled += movementController.Idle;
         }

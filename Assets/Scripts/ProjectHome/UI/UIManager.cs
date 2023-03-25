@@ -7,6 +7,8 @@ namespace Home
 {
     public class UIManager : MonoBehaviour
     {
+        [SerializeField] private CharacterManager _characterManager;
+
         public TextMeshProUGUI colonySizeText;
         public TextMeshProUGUI daysAliveText;
         private int days = 0;
@@ -18,7 +20,7 @@ namespace Home
 
         void Update()
         {
-            UpdateText(colonySizeText, CharacterManager.characterList.Count.ToString());
+            UpdateText(colonySizeText, _characterManager.AliveCharactersCount.ToString());
             UpdateText(daysAliveText, days.ToString());
         }
 
@@ -30,8 +32,8 @@ namespace Home
         IEnumerator DaysCountingCoroutine()
         {
             WaitForSeconds wait = new WaitForSeconds(20);
- 
-            while(true)
+
+            while (true)
             {
                 days += 1;
                 yield return wait;
