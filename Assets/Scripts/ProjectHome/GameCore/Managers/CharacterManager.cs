@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ProjectHome;
 using ProjectHome.Data;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Home
     {
         [SerializeField] private CharacterGenerationDataContainer _characterGenerationData;
         [SerializeField] private InputManager _inputManager;
+        [SerializeField] private SelectionManager _selectionManager;
 
         private int _lastCharacterId;
 
@@ -22,6 +24,28 @@ namespace Home
         {
             _characterInstances = new List<CharacterEntity>();
             _deadCharacters = new List<int>();
+        }
+
+        private void OnEnable()
+        {
+            _inputManager.OnPointerClick += OnPointerHandler;
+        }
+
+        private void OnDisable()
+        {
+            _inputManager.OnPointerClick -= OnPointerHandler;
+        }
+
+        private void OnPointerHandler(Vector3 point)
+        {
+            var queue = new Queue<CharacterEntity>(_selectionManager.SelectedCharacters);
+
+            if (queue.Count == 0)
+                return;
+
+            var character = queue.Dequeue();
+            character.MoveTo(point);
+            _selectionManager.MarkUnselected(character);
         }
 
         private void Update()

@@ -8906,6 +8906,7 @@ MonoBehaviour:
   _characterGenerationData: {fileID: 11400000, guid: 44198e6c1f82491448215d3340be199c,
     type: 2}
   _inputManager: {fileID: 575320328}
+  _selectionManager: {fileID: 119112030}
 --- !u!4 &1955328112
 Transform:
   m_ObjectHideFlags: 0

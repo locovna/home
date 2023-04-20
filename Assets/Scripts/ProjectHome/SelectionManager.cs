@@ -8,11 +8,13 @@ namespace ProjectHome
 {
     public class SelectionManager : MonoBehaviour
     {
-        private CharacterEntity[] _selectedCharacters;
+        private List<CharacterEntity> _selectedCharacters;
+
+        public IEnumerable<CharacterEntity> SelectedCharacters => _selectedCharacters;
 
         private SelectionManager()
         {
-            _selectedCharacters = Array.Empty<CharacterEntity>();
+            _selectedCharacters = new List<CharacterEntity>();
         }
 
         public void SetCharactersSelected(IEnumerable<CharacterEntity> characterEntities)
@@ -22,12 +24,23 @@ namespace ProjectHome
                 character.SetSelected(false);
             }
 
-            _selectedCharacters = characterEntities.ToArray();
+            _selectedCharacters = new List<CharacterEntity>(characterEntities);
 
             foreach (var character in _selectedCharacters)
             {
                 character.SetSelected(true);
             }
+        }
+
+        public void MarkUnselected(CharacterEntity characterEntity)
+        {
+            var index = _selectedCharacters.IndexOf(characterEntity);
+
+            if (index < 0)
+                return;
+
+            characterEntity.SetSelected(false);
+            _selectedCharacters.RemoveAt(index);
         }
     }
 }
