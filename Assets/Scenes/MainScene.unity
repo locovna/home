@@ -1582,10 +1582,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameCamera: {fileID: 1425676629}
+  _raycastMaxDistance: 100
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  _characterManager: {fileID: 1955328111}
 --- !u!4 &575320329
 Transform:
   m_ObjectHideFlags: 0
@@ -8758,6 +8758,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81812608bc34f4d748303646568f5d86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _characterGenerationData: {fileID: 11400000, guid: 44198e6c1f82491448215d3340be199c,
+    type: 2}
+  _inputManager: {fileID: 575320328}
 --- !u!4 &1955328112
 Transform:
   m_ObjectHideFlags: 0
@@ -9316,6 +9319,11 @@ PrefabInstance:
       propertyPath: colonySizeText
       value: 
       objectReference: {fileID: 345686473}
+    - target: {fileID: 2286346055907830771, guid: d43639abdb45c4492a823d32dcdb2c08,
+        type: 3}
+      propertyPath: _characterManager
+      value: 
+      objectReference: {fileID: 1955328111}
     - target: {fileID: 2286346055907830798, guid: d43639abdb45c4492a823d32dcdb2c08,
         type: 3}
       propertyPath: m_Name

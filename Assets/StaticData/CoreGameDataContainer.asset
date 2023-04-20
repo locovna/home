@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6dde002aa2746e08eabcbe106c09a96, type: 3}
   m_Name: CoreGameDataContainer
   m_EditorClassIdentifier: 
-  _characterPrefab: {fileID: 3619967306383879517, guid: 093e0f22242f3418394b9ac19054baab,
+  _characterEntity: {fileID: -2064865023285990774, guid: 093e0f22242f3418394b9ac19054baab,
     type: 3}
   _resourcePrefab: {fileID: 4999021934192495105, guid: 9f268ba4db7684b34918869ec948df87,
     type: 3}

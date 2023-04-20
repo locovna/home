@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace ProjectHome.Data
 {
+    [CreateAssetMenu(menuName = "Home/Data Containers/" + nameof(CharacterGenerationDataContainer),
+        fileName = nameof(CharacterGenerationDataContainer))]
     public class CharacterGenerationDataContainer : ScriptableObject
     {
         [SerializeField] private string[] _names;
