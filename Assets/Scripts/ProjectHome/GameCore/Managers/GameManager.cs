@@ -10,10 +10,10 @@ namespace Home
     {
         [SerializeField] private CoreGameDataContainer _coreGameDataContainer;
         [SerializeField] private CharacterManager _characterManager;
-
-        public GameObject deathPopup;
-        private int maxNumberOfCharacters = 15;
-        private int numberOfResources = 150;
+        [SerializeField] private GameOverPopup _deathPopup;
+        [SerializeField] private int _minAmountOfCharacters = 4;
+        [SerializeField] private int _maxAmountOfCharacters = 15;
+        [SerializeField] private int _resourcesAmount = 150;
 
         private void Start()
         {
@@ -40,7 +40,7 @@ namespace Home
 
         private void SpawnCharacters()
         {
-            var charactersAmount = Random.Range(4, maxNumberOfCharacters);
+            var charactersAmount = Random.Range(_minAmountOfCharacters, _maxAmountOfCharacters);
             var prefabs =
                 _characterManager.GenerateCharacterPrefabs(charactersAmount, _coreGameDataContainer.CharacterBehaviour);
 
@@ -64,10 +64,10 @@ namespace Home
         // Scene Manager
         public void LoadStartScene()
         {
-            if (deathPopup != null)
-            {
-                deathPopup.SetActive(false);
-            }
+            // if (_deathPopup != null)
+            // {
+            //     _deathPopup.SetActive(false);
+            // }
 
             SceneManager.LoadScene(0);
         }
