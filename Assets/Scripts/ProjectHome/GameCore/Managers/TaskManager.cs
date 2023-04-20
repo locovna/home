@@ -1,14 +1,24 @@
-﻿namespace Home
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+namespace Home
 {
     public enum ETaskType
     {
+        None,
         Move,
         Use,
         Store
     }
-    
-    public static class TaskManager
+
+    public class TaskManager : MonoBehaviour
     {
-        public static ETaskType currentTask = ETaskType.Use;
+        [SerializeField] private CharacterManager _characterManager;
+
+        public IEnumerable<CharacterEntity> GetIdleCharacters()
+        {
+            return _characterManager.GetAliveCharacters().Where(x => x.CurrentTask == ETaskType.None);
+        }
     }
 }

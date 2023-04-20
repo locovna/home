@@ -59,7 +59,7 @@ namespace Home
             var damageMultiplier = _characterGenerationData.DamageLimits.GetRandom();
             var speedMultiplier = _characterGenerationData.SpeedMultiplierLimits.GetRandom();
             var characterName = _characterGenerationData.GetRandomName();
-            character.Init(id, healthLimit, selfDamage, speed, speedMultiplier, damageMultiplier, _inputManager,
+            character.Init(id, healthLimit, selfDamage, speed, speedMultiplier, damageMultiplier,
                 characterName);
             character.OnDeath += OnCharacterDeathHandler;
         }

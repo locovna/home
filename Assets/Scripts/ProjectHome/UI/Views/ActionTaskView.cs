@@ -26,17 +26,17 @@ namespace ProjectHome.UI.Views
 
         private void OnEatButtonClick()
         {
-            TaskManager.currentTask = ETaskType.Use;
+           // TaskManager.currentTask = ETaskType.Use;
         }
 
         private void OnStoreButtonClick()
         {
-            TaskManager.currentTask = ETaskType.Store;
+           // TaskManager.currentTask = ETaskType.Store;
         }
 
         private void OnMoveButtonClick()
         {
-            TaskManager.currentTask = ETaskType.Move;
+           // TaskManager.currentTask = ETaskType.Move;
         }
     }
 }

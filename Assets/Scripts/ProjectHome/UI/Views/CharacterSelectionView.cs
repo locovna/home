@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Home;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +8,8 @@ namespace ProjectHome.UI.Views
 {
     public class CharacterSelectionView : MonoBehaviour
     {
+        [SerializeField] private TaskManager _taskManager;
+        [SerializeField] private SelectionManager _selectionManager;
         [SerializeField] private Button _buttonSelectAll;
         [SerializeField] private Button _buttonSelectIdle;
 
@@ -14,7 +18,7 @@ namespace ProjectHome.UI.Views
             _buttonSelectAll.onClick.AddListener(OnClickSelectAll);
             _buttonSelectIdle.onClick.AddListener(OnClickSelectIdle);
         }
-        
+
         private void OnDisable()
         {
             _buttonSelectAll.onClick.RemoveListener(OnClickSelectAll);
@@ -25,10 +29,10 @@ namespace ProjectHome.UI.Views
         {
             Debug.Log("Select All");
         }
-        
+
         private void OnClickSelectIdle()
         {
-            Debug.Log("Select Idle");
+            _selectionManager.SetCharactersSelected(_taskManager.GetIdleCharacters());
         }
     }
 }
