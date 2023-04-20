@@ -8,6 +8,7 @@ namespace Home
         [SerializeField] private CharacterProperties _characterProperties;
         [SerializeField] private CharacterBehaviour _characterBehaviour;
         [SerializeField] private MovementController _movementController;
+        [SerializeField] private CharacterUiView _characterUiView;
 
         private InputManager _inputManager;
         private int _id;
@@ -47,11 +48,13 @@ namespace Home
         }
 
         public void Init(int id, float healthLimit, float selfDamage, float speed, float speedMultiplier,
-            float damageMultiplier, InputManager inputManager)
+            float damageMultiplier, InputManager inputManager, string characterName)
         {
             _id = id;
             _characterProperties.Init(healthLimit, selfDamage, speed, speedMultiplier, damageMultiplier);
             _inputManager = inputManager;
+            name = $"{characterName} [{id}]";
+            _characterUiView.SetName(characterName);
             SubscribeToClick();
             _isInitialized = true;
         }

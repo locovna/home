@@ -11,6 +11,8 @@ namespace Home
         [SerializeField] private CharacterGenerationDataContainer _characterGenerationData;
         [SerializeField] private InputManager _inputManager;
 
+        private int _lastCharacterId;
+
         private readonly List<CharacterEntity> _characterInstances;
         private readonly List<int> _deadCharacters;
 
@@ -39,8 +41,9 @@ namespace Home
             for (int i = 0; i < quantity; i++)
             {
                 var characterPrefabInstance = Instantiate(characterPrefab, Vector3.zero, Quaternion.identity);
-                InitCharacterInstance(characterPrefabInstance, i);
+                InitCharacterInstance(characterPrefabInstance, _lastCharacterId);
                 prefabInstances[i] = characterPrefabInstance;
+                _lastCharacterId++;
             }
 
             _characterInstances.AddRange(prefabInstances);
@@ -55,7 +58,9 @@ namespace Home
             var speed = _characterGenerationData.SpeedLimits.GetRandom();
             var damageMultiplier = _characterGenerationData.DamageLimits.GetRandom();
             var speedMultiplier = _characterGenerationData.SpeedMultiplierLimits.GetRandom();
-            character.Init(id, healthLimit, selfDamage, speed, speedMultiplier, damageMultiplier, _inputManager);
+            var characterName = _characterGenerationData.GetRandomName();
+            character.Init(id, healthLimit, selfDamage, speed, speedMultiplier, damageMultiplier, _inputManager,
+                characterName);
             character.OnDeath += OnCharacterDeathHandler;
         }
 

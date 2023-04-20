@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 2462654726960878787}
   - component: {fileID: -2064865023285990774}
   - component: {fileID: 7134661374205340857}
+  - component: {fileID: 8624061665211298306}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -328,6 +329,7 @@ MonoBehaviour:
   _characterProperties: {fileID: 7134661374205340857}
   _characterBehaviour: {fileID: 3619967306383879517}
   _movementController: {fileID: 2462654726960878787}
+  _characterUiView: {fileID: 8624061665211298306}
 --- !u!114 &7134661374205340857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,6 +342,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa2eb31cb6e2482d97783ed9975816e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8624061665211298306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4620875797842597731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d58c3f9b94b84db4b4b5597bc4991b42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nameLabel: {fileID: 6651989213548375094}
+  _healthBar: {fileID: 4601326158068171269}
 --- !u!1 &4620875797997738620
 GameObject:
   m_ObjectHideFlags: 0

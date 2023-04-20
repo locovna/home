@@ -49,6 +49,12 @@ namespace ProjectHome.Data
             _minSelfDamage = 0.1f;
             _maxSelfDamage = 1f;
         }
+
+        public string GetRandomName()
+        {
+            var index = Random.Range(0, _names.Length);
+            return _names[index];
+        }
     }
 
     public static class GenerationDataExtensions
