@@ -6,13 +6,13 @@ namespace Home
     {
         [SerializeField] private GameObject _storageObject;
         [SerializeField] private MovementController _movementController;
-        
-        public void ResourceInteract(ResourceBehaviour resource, ETaskType currentTask)
+
+        public void ResourceInteract(ResourceBehaviour resource, ETaskType currentTask, CharacterEntity characterEntity)
         {
             switch (currentTask)
             {
-                case ETaskType.Eat:
-                    EatResource(resource);
+                case ETaskType.Use:
+                    UseResource(resource, characterEntity);
                     break;
 
                 case ETaskType.Store:
@@ -21,14 +21,11 @@ namespace Home
             }
         }
 
-        private void EatResource(ResourceBehaviour resource)
+        private void UseResource(ResourceBehaviour resource, CharacterEntity characterEntity)
         {
-            //  resource.ApplyEffects(character);
-            // // Destroy(collisionInfo.collider.gameObject);
-            // // move to resource manager or resource itself
-            //  ResourceManager.resources.Remove(resourceBehaviour.resource);
+            resource.Apply(characterEntity);
         }
-        
+
         private void StoreResource(ResourceBehaviour resource)
         {
             // grab the resource, move it to storage, drop

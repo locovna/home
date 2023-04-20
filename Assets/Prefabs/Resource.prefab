@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4120385180005325162}
   - component: {fileID: 4120385180005325163}
   - component: {fileID: 4120385180005325160}
-  - component: {fileID: -9033542685510949733}
   - component: {fileID: 4999021934192495105}
   m_Layer: 0
   m_Name: Resource
@@ -90,27 +89,11 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4120385180005325158}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &-9033542685510949733
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4120385180005325158}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.5
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &4999021934192495105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +106,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f428c5785a6134e85b7589263e27494f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 7293afe3c37e4492b8e086a0cc7bc22f, type: 3}
-  cursorMode: 1
-  hotSpot: {x: 0, y: 0}
+  _renderer: {fileID: 4120385180005325163}
+  _activeColor: {r: 0.14098358, g: 1, b: 0, a: 0}

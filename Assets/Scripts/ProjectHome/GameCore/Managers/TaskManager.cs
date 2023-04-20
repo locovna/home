@@ -3,12 +3,12 @@
     public enum ETaskType
     {
         Move,
-        Eat,
+        Use,
         Store
     }
     
     public static class TaskManager
     {
-        public static ETaskType currentTask = ETaskType.Eat;
+        public static ETaskType currentTask = ETaskType.Use;
     }
 }

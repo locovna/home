@@ -14,6 +14,7 @@ namespace Home
         [SerializeField] private int _minAmountOfCharacters = 4;
         [SerializeField] private int _maxAmountOfCharacters = 15;
         [SerializeField] private int _resourcesAmount = 150;
+        [SerializeField] private ResourceManager _resourceManager;
 
         private void Start()
         {
@@ -29,13 +30,12 @@ namespace Home
         private void Generate()
         {
             SpawnCharacters();
-
             GenerateResources();
         }
 
         private void GenerateResources()
         {
-            //  ResourceManager.GenerateResources(numberOfResources, _coreGameDataContainer.ResourcePrefab);
+            _resourceManager.GenerateResources(_resourcesAmount, _coreGameDataContainer.ResourcePrefab);
         }
 
         private void SpawnCharacters()

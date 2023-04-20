@@ -1,50 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Home
 {
     public class ResourceBehaviour : MonoBehaviour
     {
-       // public Resource resource;
-        public bool active = false;
+        [SerializeField] private Renderer _renderer;
+        [SerializeField] private Color _activeColor;
 
-        public delegate void ResourceActivationDelegate();
-        public event ResourceActivationDelegate Canceled;
+        private Color _initialColor;
+        private bool _isSelected;
+        private BaseResource _resource;
 
-        Color colorClicked = Color.green;
-        Color colorInitial;
-        Renderer rendererComponent;
-
-        void Start()
+        private void Awake()
         {
-            rendererComponent = GetComponent<Renderer>();
-            colorInitial = rendererComponent.material.GetColor("_Color");
+            _initialColor = _renderer.material.color;
         }
 
-        public void ClickOnResource()
+        public void SwitchSelectedState()
         {
-            if (!active)
-            {
-                active = true;
-                rendererComponent.material.color = colorClicked;
-            }
-            else 
-            {
-                active = false;
-                rendererComponent.material.color = colorInitial;
-                Canceled?.Invoke();
-            }
+            _isSelected = !_isSelected;
+            _renderer.material.color = _isSelected ? _activeColor : _initialColor;
         }
 
-        // public void InitializeResource(Resource resourceToInitialize)
-        // {
-        //     resource = resourceToInitialize;
-        // }
-        //
-        // public void ApplyEffects(Character character)
-        // {
-        //     resource.ApplyEffects(character);
-        // }
+        public void Init(BaseResource resource)
+        {
+            _resource = resource;
+        }
+
+        public void Apply(CharacterEntity characterEntity)
+        {
+            _resource.Apply(characterEntity);
+        }
     }
 }

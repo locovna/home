@@ -44,7 +44,7 @@ namespace Home
                 return;
 
             var resourceBehaviour = other.GetComponent<ResourceBehaviour>();
-            _characterBehaviour.ResourceInteract(resourceBehaviour, TaskManager.currentTask);
+            _characterBehaviour.ResourceInteract(resourceBehaviour, TaskManager.currentTask, this);
         }
 
         public void Init(int id, float healthLimit, float selfDamage, float speed, float speedMultiplier,

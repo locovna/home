@@ -26,7 +26,7 @@ namespace ProjectHome.UI.Views
 
         private void OnEatButtonClick()
         {
-            TaskManager.currentTask = ETaskType.Eat;
+            TaskManager.currentTask = ETaskType.Use;
         }
 
         private void OnStoreButtonClick()
