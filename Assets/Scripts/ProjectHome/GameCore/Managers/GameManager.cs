@@ -15,13 +15,13 @@ namespace Home
         private int maxNumberOfCharacters = 15;
         private int numberOfResources = 150;
 
-        void Start()
+        private void Start()
         {
             Generate();
             SpawnResources();
         }
 
-        void Update()
+        private void Update()
         {
             ControlNumberOfResources();
         }
@@ -35,7 +35,7 @@ namespace Home
 
         private void GenerateResources()
         {
-            ResourceManager.GenerateResources(numberOfResources, _coreGameDataContainer.ResourcePrefab);
+            //  ResourceManager.GenerateResources(numberOfResources, _coreGameDataContainer.ResourcePrefab);
         }
 
         private void SpawnCharacters()
@@ -54,11 +54,11 @@ namespace Home
 
         private void GameOver()
         {
-            ResourceManager.resources.Clear();
-            if (deathPopup != null)
-            {
-                deathPopup.SetActive(true);
-            }
+            // ResourceManager.resources.Clear();
+            // if (deathPopup != null)
+            // {
+            //     deathPopup.SetActive(true);
+            // }
         }
 
         // Scene Manager
@@ -74,10 +74,10 @@ namespace Home
 
         private void SpawnResources()
         {
-            for (int i = 0; i < ResourceManager.resources.Count; i++)
-            {
-                PlaceGameObjectRandomly(ResourceManager.resources[i].prefab);
-            }
+            // for (int i = 0; i < ResourceManager.resources.Count; i++)
+            // {
+            //     PlaceGameObjectRandomly(ResourceManager.resources[i].prefab);
+            // }
         }
 
         private void PlaceGameObjectRandomly(GameObject go)
@@ -96,12 +96,12 @@ namespace Home
 
         private void ControlNumberOfResources()
         {
-            if (ResourceManager.resources.Count <= numberOfResources / 4)
-            {
-                ResourceManager.GenerateResources(numberOfResources / Random.Range(2, 5),
-                    _coreGameDataContainer.ResourcePrefab);
-                SpawnResources();
-            }
+            // if (ResourceManager.resources.Count <= numberOfResources / 4)
+            // {
+            //     ResourceManager.GenerateResources(numberOfResources / Random.Range(2, 5),
+            //         _coreGameDataContainer.ResourcePrefab);
+            //     SpawnResources();
+            // }
         }
     }
 }

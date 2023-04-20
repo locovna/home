@@ -1,89 +1,39 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+﻿using UnityEngine;
 
 namespace Home
 {
     public class CharacterBehaviour : MonoBehaviour
     {
-        private Character character;
-        public bool isOnTask = false;
-        public GameObject storageObject;
-        private TextMeshProUGUI text;
-        private Image healthBar;
-        private MovementController movementController;
-
-        void Start()
+        [SerializeField] private GameObject _storageObject;
+        [SerializeField] private MovementController _movementController;
+        
+        public void ResourceInteract(ResourceBehaviour resource, ETaskType currentTask)
         {
-            movementController = GetComponent<MovementController>();
-        }
-
-        void Update()
-        {
-            UpdateHealthBar();
-            character.TakeDamage(character.selfDamage);
-        }
-
-        // "Eat" and "Store" task - to refactor
-        void OnCollisionEnter(Collision collisionInfo)
-        {
-            if (collisionInfo.collider.tag == "Resource")
+            switch (currentTask)
             {
-                Debug.Log(character.name + " hits " + collisionInfo.collider.name);
+                case ETaskType.Eat:
+                    EatResource(resource);
+                    break;
 
-                ResourceBehaviour resourceBehaviour = collisionInfo.collider.gameObject.GetComponent<ResourceBehaviour>();
-                if (resourceBehaviour != null)
-                {
-                    if (TaskManager.currentTask == ETaskType.Eat)
-                    {
-                        resourceBehaviour.ApplyEffects(character);
-                        Destroy(collisionInfo.collider.gameObject);
-                        ResourceManager.resources.Remove(resourceBehaviour.resource); // move to resource manager or resource itself
-                        isOnTask = false;
-                    }
-                    else if (TaskManager.currentTask == ETaskType.Store)
-                    {
-                        // grab the resource, move it to storage, drop
-                        Debug.Log("Store task is on CharacterBeh");
-                        movementController.MoveToPoint(storageObject.transform.position);
-                    }
-                }
-            }
-            else
-            {
-                Debug.Log(character.name + " hits " + collisionInfo.collider.name);
+                case ETaskType.Store:
+                    StoreResource(resource);
+                    break;
             }
         }
 
-        public void InitializeCharacter(Character characterToInitialize)
+        private void EatResource(ResourceBehaviour resource)
         {
-            characterToInitialize.Death += Death;
-            character = characterToInitialize;
-            SetUI();
-            Debug.Log($"{gameObject.GetInstanceID()} {character.name} is set. {character.healthLimit} {character.selfDamage}");
+            //  resource.ApplyEffects(character);
+            // // Destroy(collisionInfo.collider.gameObject);
+            // // move to resource manager or resource itself
+            //  ResourceManager.resources.Remove(resourceBehaviour.resource);
         }
-
-        // to fix: no need in id parameter
-        private void Death(string id)
+        
+        private void StoreResource(ResourceBehaviour resource)
         {
-            Debug.Log($"{gameObject.GetInstanceID()} {character.name} is dead!");
-            character.Death -= Death;
-            Destroy(gameObject);
-        }
-
-        // move to View Controller
-        private void SetUI()
-        {
-            healthBar = gameObject.GetComponentInChildren<Image>();
-            text = gameObject.GetComponentInChildren<TextMeshProUGUI>();
-            text.text = character.name;
-        }
-
-        private void UpdateHealthBar()
-        {
-            healthBar.fillAmount = character.health / character.healthLimit;
+            // grab the resource, move it to storage, drop
+            Debug.Log("Store task is on CharacterBeh");
+            //_movementController.MoveToPoint(_storageObject.transform.position);
         }
     }
 }

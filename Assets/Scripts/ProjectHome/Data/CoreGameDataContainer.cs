@@ -7,10 +7,10 @@ namespace ProjectHome.Data
         fileName = nameof(CoreGameDataContainer))]
     public class CoreGameDataContainer : ScriptableObject
     {
-        [SerializeField] private CharacterBehaviour _characterPrefab;
+        [SerializeField] private CharacterEntity _characterEntity;
         [SerializeField] private ResourceBehaviour _resourcePrefab;
 
-        public CharacterBehaviour CharacterBehaviour => _characterPrefab;
+        public CharacterEntity CharacterBehaviour => _characterEntity;
         public ResourceBehaviour ResourcePrefab => _resourcePrefab;
     }
 }

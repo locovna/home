@@ -6,7 +6,7 @@ namespace Home
 {
     public class ResourceBehaviour : MonoBehaviour
     {
-        public Resource resource;
+       // public Resource resource;
         public bool active = false;
 
         public delegate void ResourceActivationDelegate();
@@ -37,14 +37,14 @@ namespace Home
             }
         }
 
-        public void InitializeResource(Resource resourceToInitialize)
-        {
-            resource = resourceToInitialize;
-        }
-
-        public void ApplyEffects(Character character)
-        {
-            resource.ApplyEffects(character);
-        }
+        // public void InitializeResource(Resource resourceToInitialize)
+        // {
+        //     resource = resourceToInitialize;
+        // }
+        //
+        // public void ApplyEffects(Character character)
+        // {
+        //     resource.ApplyEffects(character);
+        // }
     }
 }

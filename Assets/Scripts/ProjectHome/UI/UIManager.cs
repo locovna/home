@@ -20,7 +20,7 @@ namespace Home
 
         void Update()
         {
-            UpdateText(colonySizeText, _characterManager.AliveCharactersCount.ToString());
+           // UpdateText(colonySizeText, _characterManager.AliveCharactersCount.ToString());
             UpdateText(daysAliveText, days.ToString());
         }
 
