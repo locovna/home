@@ -28,23 +28,43 @@ namespace Home
 
         private void OnEnable()
         {
-            _inputManager.OnPointerClick += OnPointerHandler;
+            //_inputManager.OnPointerClick += OnPointerHandler;
+            _inputManager.OnPointerClickCollider += OnPointerColliderHandler;
         }
 
         private void OnDisable()
         {
-            _inputManager.OnPointerClick -= OnPointerHandler;
+            //_inputManager.OnPointerClick -= OnPointerHandler;
+            _inputManager.OnPointerClickCollider -= OnPointerColliderHandler;
         }
 
         private void OnPointerHandler(Vector3 point)
         {
+            if (!TryGetNextCharacter(out var character))
+                return;
+
+            character.MoveTo(point);
+            _selectionManager.MarkUnselected(character);
+        }
+
+        private bool TryGetNextCharacter(out CharacterEntity character)
+        {
+            character = null;
             var queue = new Queue<CharacterEntity>(_selectionManager.SelectedCharacters);
 
             if (queue.Count == 0)
+                return false;
+
+            character = queue.Dequeue();
+            return true;
+        }
+
+        private void OnPointerColliderHandler(Collider other)
+        {
+            if (!TryGetNextCharacter(out var character))
                 return;
 
-            var character = queue.Dequeue();
-            character.MoveTo(point);
+            character.MoveTo(other);
             _selectionManager.MarkUnselected(character);
         }
 

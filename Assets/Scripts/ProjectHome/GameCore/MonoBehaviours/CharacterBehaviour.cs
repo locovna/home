@@ -24,6 +24,8 @@ namespace Home
         private void UseResource(ResourceBehaviour resource, CharacterEntity characterEntity)
         {
             resource.Apply(characterEntity);
+            resource.gameObject.SetActive(false);
+            Debug.Log($"Resource {resource.ResourceName} is used!");
         }
 
         private void StoreResource(ResourceBehaviour resource)

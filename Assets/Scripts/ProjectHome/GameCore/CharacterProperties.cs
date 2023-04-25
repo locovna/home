@@ -1,27 +1,24 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Object = UnityEngine.Object;
 
 namespace Home
 {
     public class CharacterProperties : MonoBehaviour
     {
+        private float _health;
         private float _healthLimit;
         private float _selfDamage;
         private float _speed;
         private float _speedMultiplier;
         private float _damageMultiplier;
-        private float _health;
 
         public event Action OnDeath;
         public float NormalizedHealth => _health / _healthLimit;
 
-        // public void Heal(float healingPoints)
-        // {
-        //     _health += healingPoints;
-        //     _health = Mathf.Clamp(_health, 0, _healthLimit);
-        // }
+        public void Heal(float healingPoints)
+        {
+            _health = Mathf.Clamp(_health + healingPoints, 0, _healthLimit);
+        }
 
         public void TakeDamage(float deltaTime)
         {

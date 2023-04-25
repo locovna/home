@@ -36,15 +36,6 @@ namespace Home
             gameObject.SetActive(false);
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (!other.CompareTag("Resource"))
-                return;
-
-            var resourceBehaviour = other.GetComponent<ResourceBehaviour>();
-            _characterBehaviour.ResourceInteract(resourceBehaviour, CurrentTask, this);
-        }
-
         public void Init(int id, float healthLimit, float selfDamage, float speed, float speedMultiplier,
             float damageMultiplier, string characterName)
         {
@@ -65,10 +56,28 @@ namespace Home
             _movementController.MoveTo(point);
         }
 
+        public void MoveTo(Collider other)
+        {
+            if (!other.CompareTag("Resource"))
+                return;
+
+            _movementController.MoveTo(other.transform.position, () =>
+            {
+                var resourceBehaviour = other.GetComponent<ResourceBehaviour>();
+                CurrentTask = ETaskType.Use;
+                _characterBehaviour.ResourceInteract(resourceBehaviour, CurrentTask, this);
+            });
+        }
+
         public void SetSelected(bool isSelected)
         {
             _isSelected = isSelected;
             _characterUiView.SetSelected(_isSelected);
+        }
+
+        public void Heal(float value)
+        {
+            _characterProperties.Heal(value);
         }
     }
 }

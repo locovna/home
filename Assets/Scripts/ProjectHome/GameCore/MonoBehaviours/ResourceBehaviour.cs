@@ -11,6 +11,8 @@ namespace Home
         private bool _isSelected;
         private BaseResource _resource;
 
+        public string ResourceName => _resource.Name;
+
         private void Awake()
         {
             _initialColor = _renderer.material.color;
