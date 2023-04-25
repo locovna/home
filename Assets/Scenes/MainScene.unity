@@ -9390,9 +9390,24 @@ PrefabInstance:
       objectReference: {fileID: 1695822308}
     - target: {fileID: -2246366872054189329, guid: d43639abdb45c4492a823d32dcdb2c08,
         type: 3}
+      propertyPath: _resourcesAmount
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -2246366872054189329, guid: d43639abdb45c4492a823d32dcdb2c08,
+        type: 3}
       propertyPath: _characterManager
       value: 
       objectReference: {fileID: 1955328111}
+    - target: {fileID: -2246366872054189329, guid: d43639abdb45c4492a823d32dcdb2c08,
+        type: 3}
+      propertyPath: _maxAmountOfCharacters
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -2246366872054189329, guid: d43639abdb45c4492a823d32dcdb2c08,
+        type: 3}
+      propertyPath: _minAmountOfCharacters
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -2246366872054189329, guid: d43639abdb45c4492a823d32dcdb2c08,
         type: 3}
       propertyPath: _objectDistributionManager

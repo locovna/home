@@ -24,7 +24,7 @@ MonoBehaviour:
   _minHealthLimit: 300
   _maxHealthLimit: 500
   _minSelfDamage: 0.1
-  _maxSelfDamage: 1
+  _maxSelfDamage: 50
   _minSpeed: 0
   _maxSpeed: 0
   _minDamage: 0

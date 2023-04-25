@@ -17,7 +17,7 @@ namespace Home
         public ETaskType CurrentTask { get; set; } = ETaskType.None;
         public bool IsSelected => _isSelected;
 
-        public event Action<int> OnDeath;
+        public event Action<CharacterEntity> OnDeath;
 
         private void OnEnable()
         {
@@ -32,7 +32,8 @@ namespace Home
 
         private void OnDeathHandler()
         {
-            OnDeath?.Invoke(_id);
+            OnDeath?.Invoke(this);
+            gameObject.SetActive(false);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -56,6 +57,7 @@ namespace Home
         public virtual void Tick(float deltaTime)
         {
             _characterProperties.TakeDamage(deltaTime);
+            _characterUiView.SetHealthValue(_characterProperties.NormalizedHealth);
         }
 
         public void MoveTo(Vector3 point)

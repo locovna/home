@@ -16,14 +16,14 @@ namespace Home
         private int _lastCharacterId;
 
         private readonly List<CharacterEntity> _characterInstances;
-        private readonly List<int> _deadCharacters;
+        private readonly List<CharacterEntity> _deadCharacters;
 
         public event Action OnAllCharactersDead;
 
         private CharacterManager()
         {
             _characterInstances = new List<CharacterEntity>();
-            _deadCharacters = new List<int>();
+            _deadCharacters = new List<CharacterEntity>();
         }
 
         private void OnEnable()
@@ -54,6 +54,10 @@ namespace Home
 
             foreach (var characterEntity in _characterInstances)
             {
+                var deadCharacterIndex = _deadCharacters.IndexOf(characterEntity);
+                if (deadCharacterIndex >= 0)
+                    continue;
+
                 characterEntity.Tick(dt);
             }
         }
@@ -99,9 +103,9 @@ namespace Home
             character.OnDeath += OnCharacterDeathHandler;
         }
 
-        private void OnCharacterDeathHandler(int characterId)
+        private void OnCharacterDeathHandler(CharacterEntity character)
         {
-            _deadCharacters.Add(characterId);
+            _deadCharacters.Add(character);
 
             if (_deadCharacters.Count == _characterInstances.Count)
             {
@@ -111,7 +115,7 @@ namespace Home
 
         public IEnumerable<CharacterEntity> GetAliveCharacters()
         {
-            return _characterInstances.Where(x => !_deadCharacters.Contains(x.Id));
+            return _characterInstances.Where(x => _deadCharacters.IndexOf(x) < 0);
         }
     }
 }

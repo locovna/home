@@ -15,6 +15,7 @@ namespace Home
         private float _health;
 
         public event Action OnDeath;
+        public float NormalizedHealth => _health / _healthLimit;
 
         // public void Heal(float healingPoints)
         // {

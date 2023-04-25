@@ -21,12 +21,6 @@ namespace Home
         private void Start()
         {
             Generate();
-            SpawnResources();
-        }
-
-        private void Update()
-        {
-            ControlNumberOfResources();
         }
 
         private void Generate()
@@ -37,7 +31,7 @@ namespace Home
 
         private void GenerateResources()
         {
-            _resourceManager.GenerateResources(_resourcesAmount, _coreGameDataContainer.ResourcePrefab);
+            var resources = _resourceManager.GenerateResources(_resourcesAmount, _coreGameDataContainer.ResourcePrefab);
         }
 
         private void SpawnCharacters()
@@ -62,6 +56,7 @@ namespace Home
 
         private void GameOver()
         {
+            Debug.Log("All characters dead! Game Over!");
             // ResourceManager.resources.Clear();
             // if (deathPopup != null)
             // {
@@ -78,14 +73,6 @@ namespace Home
             // }
 
             SceneManager.LoadScene(0);
-        }
-
-        private void SpawnResources()
-        {
-            // for (int i = 0; i < ResourceManager.resources.Count; i++)
-            // {
-            //     PlaceGameObjectRandomly(ResourceManager.resources[i].prefab);
-            // }
         }
 
         private void ControlNumberOfResources()
