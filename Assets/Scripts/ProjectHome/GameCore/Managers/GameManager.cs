@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using ProjectHome.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,7 @@ namespace Home
         [SerializeField] private int _maxAmountOfCharacters = 15;
         [SerializeField] private int _resourcesAmount = 150;
         [SerializeField] private ResourceManager _resourceManager;
+        [SerializeField] private ObjectDistributionManager _objectDistributionManager;
 
         private void Start()
         {
@@ -42,11 +44,17 @@ namespace Home
         {
             var charactersAmount = Random.Range(_minAmountOfCharacters, _maxAmountOfCharacters);
             var prefabs =
-                _characterManager.GenerateCharacterPrefabs(charactersAmount, _coreGameDataContainer.CharacterBehaviour);
+                _characterManager.GenerateCharacterPrefabs(charactersAmount, _coreGameDataContainer.CharacterBehaviour)
+                    .ToArray();
+
+            foreach (var characterEntity in prefabs)
+            {
+                _characterManager.RegisterCharacterInstance(characterEntity);
+            }
 
             foreach (var prefab in prefabs)
             {
-                PlaceGameObjectRandomly(prefab.gameObject);
+                prefab.transform.position = _objectDistributionManager.GetRandomPosition();
             }
 
             _characterManager.OnAllCharactersDead += GameOver;
@@ -78,20 +86,6 @@ namespace Home
             // {
             //     PlaceGameObjectRandomly(ResourceManager.resources[i].prefab);
             // }
-        }
-
-        private void PlaceGameObjectRandomly(GameObject go)
-        {
-            float xPosition;
-            float yPosition = 5f;
-            float zPosition;
-
-            xPosition = Random.Range(-30, 30);
-            zPosition = Random.Range(-30, 30);
-            if (go != null)
-            {
-                go.transform.position = new Vector3(xPosition, yPosition, zPosition);
-            }
         }
 
         private void ControlNumberOfResources()

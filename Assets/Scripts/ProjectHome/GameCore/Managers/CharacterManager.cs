@@ -70,9 +70,20 @@ namespace Home
                 _lastCharacterId++;
             }
 
-            _characterInstances.AddRange(prefabInstances);
-
             return prefabInstances;
+        }
+
+        public void RegisterCharacterInstance(CharacterEntity characterEntity)
+        {
+            var index = _characterInstances.IndexOf(characterEntity);
+
+            if (index >= 0)
+            {
+                Debug.Log($"The character {characterEntity.Id} is already registered!");
+                return;
+            }
+
+            _characterInstances.Add(characterEntity);
         }
 
         private void InitCharacterInstance(CharacterEntity character, int id)
