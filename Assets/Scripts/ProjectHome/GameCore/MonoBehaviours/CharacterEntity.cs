@@ -49,6 +49,11 @@ namespace Home
         {
             _characterProperties.TakeDamage(deltaTime);
             _characterUiView.SetHealthValue(_characterProperties.NormalizedHealth);
+
+            if (CurrentTask != ETaskType.None)
+            {
+                _characterUiView.SetPath(_movementController.GetPath());
+            }
         }
 
         public void MoveTo(Collider other)

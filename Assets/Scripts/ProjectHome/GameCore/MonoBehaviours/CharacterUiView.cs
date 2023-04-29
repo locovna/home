@@ -1,4 +1,6 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +12,7 @@ namespace Home
         [SerializeField] private Image _healthBar;
         [SerializeField] private Renderer _selection;
         [SerializeField] private Gradient _healthGradient;
+        [SerializeField] private LineRenderer _lineRenderer;
 
         public void SetName(string characterName)
         {
@@ -25,6 +28,13 @@ namespace Home
         public void SetSelected(bool isSelected)
         {
             _selection.gameObject.SetActive(isSelected);
+        }
+
+        public void SetPath(IEnumerable<Vector3> points)
+        {
+            var path = points.ToArray();
+            _lineRenderer.positionCount = path.Length;
+            _lineRenderer.SetPositions(path);
         }
     }
 }

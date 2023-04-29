@@ -40,5 +40,10 @@ namespace Home
 
             onPointReached?.Invoke();
         }
+
+        public Vector3[] GetPath()
+        {
+            return _agent.path.corners;
+        }
     }
 }
