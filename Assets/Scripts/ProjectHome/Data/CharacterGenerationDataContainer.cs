@@ -18,17 +18,12 @@ namespace ProjectHome.Data
         [SerializeField] private float _maxSpeed;
         [SerializeField] private float _minDamage;
         [SerializeField] private float _maxDamage;
-        [SerializeField] private float _minSpeedMultiplier;
-        [SerializeField] private float _maxSpeedMultiplier;
 
         public IEnumerable<string> Names => _names;
         public Tuple<float, float> HealthLimits => new Tuple<float, float>(_minHealthLimit, _maxHealthLimit);
         public Tuple<float, float> SelfDamageLimits => new Tuple<float, float>(_minSelfDamage, _maxSelfDamage);
         public Tuple<float, float> SpeedLimits => new Tuple<float, float>(_minSpeed, _maxSpeed);
         public Tuple<float, float> DamageLimits => new Tuple<float, float>(_minDamage, _maxDamage);
-
-        public Tuple<float, float> SpeedMultiplierLimits =>
-            new Tuple<float, float>(_minSpeedMultiplier, _maxSpeedMultiplier);
 
         private CharacterGenerationDataContainer()
         {

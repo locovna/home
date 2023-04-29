@@ -35,13 +35,14 @@ namespace Home
             gameObject.SetActive(false);
         }
 
-        public void Init(int id, float healthLimit, float selfDamage, float speed, float speedMultiplier,
+        public void Init(int id, float healthLimit, float selfDamage, float speed,
             float damageMultiplier, string characterName)
         {
             _id = id;
-            _characterProperties.Init(healthLimit, selfDamage, speed, speedMultiplier, damageMultiplier);
+            _characterProperties.Init(healthLimit, selfDamage, damageMultiplier);
             name = $"{characterName} [{id}]";
             _characterUiView.SetName(characterName);
+            _movementController.Speed = speed;
         }
 
         public virtual void Tick(float deltaTime)

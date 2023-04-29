@@ -9,8 +9,6 @@ namespace Home
         private float _healthLimit;
         private float _selfDamage;
         private float _speed;
-        private float _speedMultiplier;
-        private float _damageMultiplier;
 
         public event Action OnDeath;
         public float NormalizedHealth => _health / _healthLimit;
@@ -33,15 +31,12 @@ namespace Home
             OnDeath?.Invoke();
         }
 
-        public void Init(float healthLimit, float selfDamage, float speed, float speedMultiplier,
-            float damageMultiplier)
+        public void Init(float healthLimit, float selfDamage, float speed)
         {
             _healthLimit = healthLimit;
             _health = healthLimit;
             _selfDamage = selfDamage;
             _speed = speed;
-            _speedMultiplier = speedMultiplier;
-            _damageMultiplier = damageMultiplier;
         }
     }
 }

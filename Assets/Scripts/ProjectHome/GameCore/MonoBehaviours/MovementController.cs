@@ -13,9 +13,10 @@ namespace Home
 
         private Coroutine _coroutine;
 
-        public void MoveTo(Vector3 point)
+        public float Speed
         {
-            _agent.SetDestination(point);
+            get => _agent.speed;
+            set => _agent.speed = value;
         }
 
         public void MoveTo(Vector3 point, Action onPointReached)

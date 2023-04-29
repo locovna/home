@@ -101,9 +101,8 @@ namespace Home
             var selfDamage = _characterGenerationData.SelfDamageLimits.GetRandom();
             var speed = _characterGenerationData.SpeedLimits.GetRandom();
             var damageMultiplier = _characterGenerationData.DamageLimits.GetRandom();
-            var speedMultiplier = _characterGenerationData.SpeedMultiplierLimits.GetRandom();
             var characterName = _characterGenerationData.GetRandomName();
-            character.Init(id, healthLimit, selfDamage, speed, speedMultiplier, damageMultiplier,
+            character.Init(id, healthLimit, selfDamage, speed, damageMultiplier,
                 characterName);
             character.OnDeath += OnCharacterDeathHandler;
         }
