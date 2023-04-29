@@ -6,7 +6,6 @@ namespace Home
     public class CharacterEntity : MonoBehaviour
     {
         [SerializeField] private CharacterProperties _characterProperties;
-        [SerializeField] private CharacterBehaviour _characterBehaviour;
         [SerializeField] private MovementController _movementController;
         [SerializeField] private CharacterUiView _characterUiView;
 
@@ -51,25 +50,51 @@ namespace Home
             _characterUiView.SetHealthValue(_characterProperties.NormalizedHealth);
         }
 
-        public void MoveTo(Vector3 point)
-        {
-            _movementController.MoveTo(point);
-        }
-
         public void MoveTo(Collider other)
         {
-            if (CurrentTask == ETaskType.None)
-                return;
-
             if (!other.CompareTag("Resource"))
                 return;
 
-            _movementController.MoveTo(other.transform.position, () =>
+            if (!other.TryGetComponent<ResourceBehaviour>(out var resourceBehaviour))
+                return;
+
+            switch (CurrentTask)
             {
-                var resourceBehaviour = other.GetComponent<ResourceBehaviour>();
-                _characterBehaviour.ResourceInteract(resourceBehaviour, CurrentTask, this);
+                case ETaskType.None:
+                    return;
+
+                case ETaskType.Use:
+                    UseResource(resourceBehaviour);
+                    break;
+
+                case ETaskType.Store:
+                    StoreResource(resourceBehaviour);
+                    break;
+
+                case ETaskType.Move:
+                    MoveToResource(resourceBehaviour);
+                    break;
+            }
+        }
+
+        private void UseResource(ResourceBehaviour resourceBehaviour)
+        {
+            _movementController.MoveTo(resourceBehaviour.transform.position, () =>
+            {
+                resourceBehaviour.Apply(this);
+                resourceBehaviour.gameObject.SetActive(false);
                 CurrentTask = ETaskType.None;
             });
+        }
+
+        private void StoreResource(ResourceBehaviour resourceBehaviour)
+        {
+            // TODO
+        }
+
+        private void MoveToResource(ResourceBehaviour resourceBehaviour)
+        {
+            // TODO
         }
 
         public void SetSelected(bool isSelected)
