@@ -6,7 +6,7 @@ namespace ProjectHome.GameCore.Managers
 {
     public class InputManager : MonoBehaviour
     {
-        [SerializeField] private UnityEngine.Camera _gameCamera;
+        [SerializeField] private Camera _gameCamera;
         [SerializeField] private float _raycastMaxDistance = 100f;
         [SerializeField] private LayerMask _groundLayerMask;
 

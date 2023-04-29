@@ -9318,6 +9318,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2151425778572903628, guid: 5980cdc6cdcd44c19aec8eb435a0d61b,
         type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 1425676629}
+    - target: {fileID: 2151425778572903628, guid: 5980cdc6cdcd44c19aec8eb435a0d61b,
+        type: 3}
       propertyPath: panSpeed
       value: 20
       objectReference: {fileID: 0}
