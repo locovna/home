@@ -2093,6 +2093,7 @@ GameObject:
   - component: {fileID: 840111734}
   - component: {fileID: 840111733}
   - component: {fileID: 840111735}
+  - component: {fileID: 840111736}
   m_Layer: 5
   m_Name: MainTopBar
   m_TagString: Untagged
@@ -2183,6 +2184,21 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &840111736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840111731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 609b8db18d41c47bdbc6b34923fcba20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _daysAliveText: {fileID: 1559365097}
+  _colonySizeText: {fileID: 345686473}
+  _foodText: {fileID: 1572859707}
 --- !u!1 &843596544
 GameObject:
   m_ObjectHideFlags: 0
@@ -7680,7 +7696,6 @@ GameObject:
   - component: {fileID: 1121125719}
   - component: {fileID: 1121125718}
   - component: {fileID: 1121125717}
-  - component: {fileID: 1121125721}
   m_Layer: 5
   m_Name: Main Canvas
   m_TagString: Untagged
@@ -7772,21 +7787,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1121125721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1121125716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 609b8db18d41c47bdbc6b34923fcba20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _characterManager: {fileID: 1955328111}
-  colonySizeText: {fileID: 345686473}
-  daysAliveText: {fileID: 1559365097}
 --- !u!1001 &1237005220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8399,6 +8399,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1572859707 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2143462593192178991, guid: 05a0be5f6c92843af9d06802ad81b04e,
+    type: 3}
+  m_PrefabInstance: {fileID: 377814155}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1656804599
 GameObject:
   m_ObjectHideFlags: 0
@@ -8589,7 +8601,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _resources:
   - {fileID: 11400000, guid: 8901e50d3ca80df4fb04efec1efcd025, type: 2}
-  _objectDistributionManager: {fileID: 468707245}
 --- !u!4 &1695822309
 Transform:
   m_ObjectHideFlags: 0
@@ -9391,24 +9402,14 @@ PrefabInstance:
       objectReference: {fileID: 1695822308}
     - target: {fileID: -2246366872054189329, guid: d43639abdb45c4492a823d32dcdb2c08,
         type: 3}
-      propertyPath: _resourcesAmount
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: -2246366872054189329, guid: d43639abdb45c4492a823d32dcdb2c08,
-        type: 3}
       propertyPath: _characterManager
       value: 
       objectReference: {fileID: 1955328111}
     - target: {fileID: -2246366872054189329, guid: d43639abdb45c4492a823d32dcdb2c08,
         type: 3}
-      propertyPath: _maxAmountOfCharacters
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: -2246366872054189329, guid: d43639abdb45c4492a823d32dcdb2c08,
-        type: 3}
-      propertyPath: _minAmountOfCharacters
-      value: 3
-      objectReference: {fileID: 0}
+      propertyPath: _gamePropertyPanel
+      value: 
+      objectReference: {fileID: 840111736}
     - target: {fileID: -2246366872054189329, guid: d43639abdb45c4492a823d32dcdb2c08,
         type: 3}
       propertyPath: _objectDistributionManager

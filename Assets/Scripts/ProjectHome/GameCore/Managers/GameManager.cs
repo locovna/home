@@ -13,27 +13,30 @@ namespace Home
     {
         [SerializeField] private CoreGameDataContainer _coreGameDataContainer;
         [SerializeField] private CharacterManager _characterManager;
-        [SerializeField] private GameOverPopup _deathPopup;
         [SerializeField] private int _minAmountOfCharacters = 4;
         [SerializeField] private int _maxAmountOfCharacters = 15;
         [SerializeField] private int _resourcesAmount = 150;
         [SerializeField] private ResourceManager _resourceManager;
         [SerializeField] private ObjectDistributionManager _objectDistributionManager;
+        [SerializeField] private GamePropertyPanel _gamePropertyPanel;
 
         private void Awake()
         {
             _resourceManager.OnResourceAmountChanged += OnResourceAmountChanged;
+            _characterManager.OnAllCharactersDead += GameOver;
         }
 
         private void Start()
         {
             SpawnCharacters();
             GenerateResources(_resourcesAmount);
+            _gamePropertyPanel.SetFoodAmountText(_resourcesAmount);
         }
 
         private void OnDestroy()
         {
             _resourceManager.OnResourceAmountChanged -= OnResourceAmountChanged;
+            _characterManager.OnAllCharactersDead -= GameOver;
         }
 
         private void GenerateResources(int resourceAmount)
@@ -46,9 +49,9 @@ namespace Home
 
         private void OnResourceAmountChanged(int initialResourceAmount, int currentResourceAmount)
         {
-            Debug.Log($"Current resource amount {currentResourceAmount}");
+            _gamePropertyPanel.SetFoodAmountText(currentResourceAmount);
 
-            if (!(currentResourceAmount <= _resourcesAmount * 0.25f))
+            if (currentResourceAmount <= _resourcesAmount * 0.25f)
                 return;
 
             // TODO: Refactor / expose values in Random.Range method
@@ -69,8 +72,6 @@ namespace Home
             }
 
             DistributeEntities(prefabs.Select(x => x.transform));
-
-            _characterManager.OnAllCharactersDead += GameOver;
         }
 
         private void DistributeEntities(IEnumerable<Transform> entities)
