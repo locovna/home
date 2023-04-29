@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Home;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ namespace ProjectHome.UI.Views
 {
     public class CharacterSelectionView : MonoBehaviour
     {
-        [SerializeField] private TaskManager _taskManager;
+        [SerializeField] private CharacterManager _characterManager;
         [SerializeField] private SelectionManager _selectionManager;
         [SerializeField] private Button _buttonSelectAll;
         [SerializeField] private Button _buttonSelectIdle;
@@ -27,12 +28,13 @@ namespace ProjectHome.UI.Views
 
         private void OnClickSelectAll()
         {
-            Debug.Log("Select All");
+            _selectionManager.SetCharactersSelected(_characterManager.GetAliveCharacters());
         }
 
         private void OnClickSelectIdle()
         {
-            _selectionManager.SetCharactersSelected(_taskManager.GetIdleCharacters());
+            _selectionManager.SetCharactersSelected(_characterManager.GetAliveCharacters()
+                .Where(x => x.CurrentTask == ETaskType.None));
         }
     }
 }

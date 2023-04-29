@@ -1364,6 +1364,7 @@ MonoBehaviour:
   _buttonEat: {fileID: 646069941}
   _buttonStore: {fileID: 899932055}
   _buttonMove: {fileID: 488837959}
+  _selectionManager: {fileID: 119112030}
 --- !u!114 &403056658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1738,7 +1739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bf280a9653a4e5c8973b45361c3e506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _taskManager: {fileID: 761735257}
+  _characterManager: {fileID: 1955328111}
   _selectionManager: {fileID: 119112030}
   _buttonSelectAll: {fileID: 984149915}
   _buttonSelectIdle: {fileID: 213542915}

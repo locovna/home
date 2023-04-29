@@ -9,6 +9,7 @@ namespace ProjectHome.UI.Views
         [SerializeField] private Button _buttonEat;
         [SerializeField] private Button _buttonStore;
         [SerializeField] private Button _buttonMove;
+        [SerializeField] private SelectionManager _selectionManager;
 
         private void OnEnable()
         {
@@ -24,19 +25,27 @@ namespace ProjectHome.UI.Views
             _buttonMove.onClick.RemoveListener(OnMoveButtonClick);
         }
 
+        private void SetTaskForSelectedCharacters(ETaskType taskType)
+        {
+            foreach (var character in _selectionManager.SelectedCharacters)
+            {
+                character.CurrentTask = taskType;
+            }
+        }
+
         private void OnEatButtonClick()
         {
-           // TaskManager.currentTask = ETaskType.Use;
+            SetTaskForSelectedCharacters(ETaskType.Use);
         }
 
         private void OnStoreButtonClick()
         {
-           // TaskManager.currentTask = ETaskType.Store;
+            SetTaskForSelectedCharacters(ETaskType.Store);
         }
 
         private void OnMoveButtonClick()
         {
-           // TaskManager.currentTask = ETaskType.Move;
+            SetTaskForSelectedCharacters(ETaskType.Move);
         }
     }
 }

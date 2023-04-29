@@ -72,12 +72,8 @@ namespace Home
         {
             var dt = Time.deltaTime;
 
-            foreach (var characterEntity in _characterInstances)
+            foreach (var characterEntity in _characterInstances.Where(x => _deadCharacters.IndexOf(x) < 0))
             {
-                var deadCharacterIndex = _deadCharacters.IndexOf(characterEntity);
-                if (deadCharacterIndex >= 0)
-                    continue;
-
                 characterEntity.Tick(dt);
             }
         }

@@ -58,14 +58,17 @@ namespace Home
 
         public void MoveTo(Collider other)
         {
+            if (CurrentTask == ETaskType.None)
+                return;
+
             if (!other.CompareTag("Resource"))
                 return;
 
             _movementController.MoveTo(other.transform.position, () =>
             {
                 var resourceBehaviour = other.GetComponent<ResourceBehaviour>();
-                CurrentTask = ETaskType.Use;
                 _characterBehaviour.ResourceInteract(resourceBehaviour, CurrentTask, this);
+                CurrentTask = ETaskType.None;
             });
         }
 
