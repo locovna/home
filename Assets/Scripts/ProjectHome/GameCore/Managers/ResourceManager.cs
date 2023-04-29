@@ -45,7 +45,9 @@ namespace ProjectHome.GameCore.Managers
                 };
             }
 
+            var initialResourceCount = _registeredResources.Count;
             _registeredResources.AddRange(resources);
+            OnResourceAmountChanged?.Invoke(initialResourceCount, _registeredResources.Count);
         }
     }
 }

@@ -29,7 +29,6 @@ namespace ProjectHome.GameCore.Managers
         {
             SpawnCharacters();
             GenerateResources(_resourcesAmount);
-            _gamePropertyPanel.SetFoodAmountText(_resourcesAmount);
         }
 
         private void OnDestroy()
@@ -50,7 +49,7 @@ namespace ProjectHome.GameCore.Managers
         {
             _gamePropertyPanel.SetFoodAmountText(currentResourceAmount);
 
-            if (currentResourceAmount <= _resourcesAmount * 0.25f)
+            if (currentResourceAmount >= _resourcesAmount * 0.25f)
                 return;
 
             // TODO: Refactor / expose values in Random.Range method
