@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ProjectHome;
 using ProjectHome.Data;
+using ProjectHome.GameCore.Character;
 using UnityEngine;
 
-namespace Home
+namespace ProjectHome.GameCore.Managers
 {
     public class CharacterManager : MonoBehaviour
     {

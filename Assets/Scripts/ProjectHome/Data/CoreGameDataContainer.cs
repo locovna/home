@@ -1,4 +1,5 @@
-﻿using Home;
+﻿using ProjectHome.GameCore.Character;
+using ProjectHome.ResourceEntities;
 using UnityEngine;
 
 namespace ProjectHome.Data

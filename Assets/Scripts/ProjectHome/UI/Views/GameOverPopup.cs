@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Home
+namespace ProjectHome.UI.Views
 {
     public class GameOverPopup : MonoBehaviour
     {

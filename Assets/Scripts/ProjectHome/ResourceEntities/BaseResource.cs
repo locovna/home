@@ -1,7 +1,8 @@
 using System;
+using ProjectHome.GameCore.Character;
 using UnityEngine;
 
-namespace Home
+namespace ProjectHome.ResourceEntities
 {
     [Serializable]
     public abstract class BaseResource : ScriptableObject

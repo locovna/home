@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Home;
+﻿using System.Collections.Generic;
+using ProjectHome.GameCore.Character;
 using UnityEngine;
 
-namespace ProjectHome
+namespace ProjectHome.GameCore.Managers
 {
     public class SelectionManager : MonoBehaviour
     {

@@ -1,4 +1,5 @@
-﻿using Home;
+﻿using ProjectHome.Data;
+using ProjectHome.GameCore.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 

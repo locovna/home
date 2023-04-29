@@ -1,7 +1,9 @@
 ﻿using System;
+using ProjectHome.Data;
+using ProjectHome.ResourceEntities;
 using UnityEngine;
 
-namespace Home
+namespace ProjectHome.GameCore.Character
 {
     public class CharacterEntity : MonoBehaviour
     {

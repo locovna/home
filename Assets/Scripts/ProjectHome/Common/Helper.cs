@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Home
+namespace ProjectHome.Common
 {
     public class Helper : MonoBehaviour
     {

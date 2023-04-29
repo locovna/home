@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using ProjectHome.Data;
+using ProjectHome.UI.Views;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-namespace Home
+namespace ProjectHome.GameCore.Managers
 {
     public class GameManager : MonoBehaviour
     {

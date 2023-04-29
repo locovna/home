@@ -1,4 +1,4 @@
-﻿namespace Home
+﻿namespace ProjectHome.Data
 {
     public enum ETaskType
     {

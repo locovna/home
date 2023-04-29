@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Home
+namespace ProjectHome.GameCore.Character
 {
     public class CharacterUiView : MonoBehaviour
     {

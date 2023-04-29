@@ -1,22 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Billboard : MonoBehaviour
+namespace ProjectHome.UI
 {
-    public Transform cam;
-    private float initialRotation;
-
-    void Start()
+    public class Billboard : MonoBehaviour
     {
-        initialRotation = transform.rotation.z;
-    }
+        public Transform cam;
+        private float initialRotation;
 
-    // called after Update() so Camera has already changed the position
-    void LateUpdate()
-    {
-        //transform.LookAt(transform.position + cam.position);
-        transform.rotation = cam.rotation;
-        transform.Rotate(Vector3.up * initialRotation * 180); // fix
+        void Start()
+        {
+            initialRotation = transform.rotation.z;
+        }
+
+        // called after Update() so Camera has already changed the position
+        void LateUpdate()
+        {
+            //transform.LookAt(transform.position + cam.position);
+            transform.rotation = cam.rotation;
+            transform.Rotate(Vector3.up * initialRotation * 180); // fix
+        }
     }
 }

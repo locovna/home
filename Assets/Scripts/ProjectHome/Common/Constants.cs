@@ -1,4 +1,4 @@
-﻿namespace Home
+﻿namespace ProjectHome.Common
 {
     public static class Constants
     {

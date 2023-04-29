@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Home
+namespace ProjectHome.GameCore.Character
 {
     [RequireComponent(typeof(NavMeshAgent))]
     public class MovementController : MonoBehaviour

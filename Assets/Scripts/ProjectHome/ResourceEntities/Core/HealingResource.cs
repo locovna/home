@@ -1,4 +1,4 @@
-﻿using Home;
+﻿using ProjectHome.GameCore.Character;
 using UnityEngine;
 
 namespace ProjectHome.ResourceEntities.Core

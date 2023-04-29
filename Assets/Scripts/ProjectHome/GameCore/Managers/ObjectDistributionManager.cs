@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Home
+namespace ProjectHome.GameCore.Managers
 {
     public class ObjectDistributionManager : MonoBehaviour
     {

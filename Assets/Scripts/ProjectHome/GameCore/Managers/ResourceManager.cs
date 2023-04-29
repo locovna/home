@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ProjectHome.ResourceEntities;
 using UnityEngine;
 
-namespace Home
+namespace ProjectHome.GameCore.Managers
 {
     public class ResourceManager : MonoBehaviour
     {

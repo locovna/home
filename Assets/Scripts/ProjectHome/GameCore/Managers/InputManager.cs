@@ -2,11 +2,11 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Home
+namespace ProjectHome.GameCore.Managers
 {
     public class InputManager : MonoBehaviour
     {
-        [SerializeField] private Camera _gameCamera;
+        [SerializeField] private UnityEngine.Camera _gameCamera;
         [SerializeField] private float _raycastMaxDistance = 100f;
         [SerializeField] private LayerMask _groundLayerMask;
 

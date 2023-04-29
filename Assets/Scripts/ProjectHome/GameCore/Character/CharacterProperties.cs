@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Home
+namespace ProjectHome.GameCore.Character
 {
     public class CharacterProperties : MonoBehaviour
     {
