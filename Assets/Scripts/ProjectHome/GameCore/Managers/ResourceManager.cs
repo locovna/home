@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -7,7 +8,15 @@ namespace Home
     public class ResourceManager : MonoBehaviour
     {
         [SerializeField] private BaseResource[] _resources;
-        [SerializeField] private ObjectDistributionManager _objectDistributionManager;
+
+        private List<ResourceBehaviour> _registeredResources;
+
+        public event Action<int, int> OnResourceAmountChanged;
+
+        private ResourceManager()
+        {
+            _registeredResources = new List<ResourceBehaviour>();
+        }
 
         public IEnumerable<ResourceBehaviour> GenerateResources(int quantity, ResourceBehaviour resourcePrefab)
         {
@@ -15,13 +24,27 @@ namespace Home
 
             for (int i = 0; i < quantity; i++)
             {
-                var resourceInstance = Instantiate(resourcePrefab, _objectDistributionManager.GetRandomPosition(),
-                    Quaternion.identity);
+                var resourceInstance = Instantiate(resourcePrefab);
                 resourceInstance.Init(_resources.First());
                 resources[i] = resourceInstance;
             }
 
             return resources;
+        }
+
+        public void RegisterResourceInstances(ResourceBehaviour[] resources)
+        {
+            foreach (var resource in resources)
+            {
+                resource.OnApply += _ =>
+                {
+                    var initialCount = _registeredResources.Count;
+                    _registeredResources.Remove(resource);
+                    OnResourceAmountChanged?.Invoke(initialCount, _registeredResources.Count);
+                };
+            }
+
+            _registeredResources.AddRange(resources);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Home
 {
@@ -12,6 +13,7 @@ namespace Home
         private BaseResource _resource;
 
         public string ResourceName => _resource.Name;
+        public event Action<CharacterEntity> OnApply;
 
         private void Awake()
         {
@@ -32,6 +34,7 @@ namespace Home
         public void Apply(CharacterEntity characterEntity)
         {
             _resource.Apply(characterEntity);
+            OnApply?.Invoke(characterEntity);
         }
     }
 }

@@ -39,7 +39,8 @@ namespace Home
         private bool TryGetNextCharacter(out CharacterEntity character)
         {
             character = null;
-            var queue = new Queue<CharacterEntity>(_selectionManager.SelectedCharacters);
+            var queue = new Queue<CharacterEntity>(
+                _selectionManager.SelectedCharacters.Where(x => x.gameObject.activeSelf));
 
             if (queue.Count == 0)
                 return false;

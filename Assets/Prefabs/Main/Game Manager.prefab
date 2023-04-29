@@ -47,6 +47,8 @@ MonoBehaviour:
     type: 2}
   _characterManager: {fileID: 0}
   _deathPopup: {fileID: 0}
-  _minAmountOfCharacters: 4
-  _maxAmountOfCharacters: 15
-  _resourcesAmount: 150
+  _minAmountOfCharacters: 3
+  _maxAmountOfCharacters: 5
+  _resourcesAmount: 15
+  _resourceManager: {fileID: 0}
+  _objectDistributionManager: {fileID: 0}

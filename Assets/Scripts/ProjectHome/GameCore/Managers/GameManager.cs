@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ProjectHome.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 namespace Home
 {
@@ -18,20 +20,40 @@ namespace Home
         [SerializeField] private ResourceManager _resourceManager;
         [SerializeField] private ObjectDistributionManager _objectDistributionManager;
 
+        private void Awake()
+        {
+            _resourceManager.OnResourceAmountChanged += OnResourceAmountChanged;
+        }
+
         private void Start()
         {
-            Generate();
-        }
-
-        private void Generate()
-        {
             SpawnCharacters();
-            GenerateResources();
+            GenerateResources(_resourcesAmount);
         }
 
-        private void GenerateResources()
+        private void OnDestroy()
         {
-            var resources = _resourceManager.GenerateResources(_resourcesAmount, _coreGameDataContainer.ResourcePrefab);
+            _resourceManager.OnResourceAmountChanged -= OnResourceAmountChanged;
+        }
+
+        private void GenerateResources(int resourceAmount)
+        {
+            var resources = _resourceManager.GenerateResources(resourceAmount, _coreGameDataContainer.ResourcePrefab)
+                .ToArray();
+            _resourceManager.RegisterResourceInstances(resources);
+            DistributeEntities(resources.Select(x => x.transform));
+        }
+
+        private void OnResourceAmountChanged(int initialResourceAmount, int currentResourceAmount)
+        {
+            Debug.Log($"Current resource amount {currentResourceAmount}");
+
+            if (!(currentResourceAmount <= _resourcesAmount * 0.25f))
+                return;
+
+            // TODO: Refactor / expose values in Random.Range method
+            var resourceSpawnAmount = _resourcesAmount / Random.Range(2, 5);
+            GenerateResources(resourceSpawnAmount);
         }
 
         private void SpawnCharacters()
@@ -46,12 +68,17 @@ namespace Home
                 _characterManager.RegisterCharacterInstance(characterEntity);
             }
 
-            foreach (var prefab in prefabs)
+            DistributeEntities(prefabs.Select(x => x.transform));
+
+            _characterManager.OnAllCharactersDead += GameOver;
+        }
+
+        private void DistributeEntities(IEnumerable<Transform> entities)
+        {
+            foreach (var prefab in entities.ToArray())
             {
                 prefab.transform.position = _objectDistributionManager.GetRandomPosition();
             }
-
-            _characterManager.OnAllCharactersDead += GameOver;
         }
 
         private void GameOver()
@@ -73,16 +100,6 @@ namespace Home
             // }
 
             SceneManager.LoadScene(0);
-        }
-
-        private void ControlNumberOfResources()
-        {
-            // if (ResourceManager.resources.Count <= numberOfResources / 4)
-            // {
-            //     ResourceManager.GenerateResources(numberOfResources / Random.Range(2, 5),
-            //         _coreGameDataContainer.ResourcePrefab);
-            //     SpawnResources();
-            // }
         }
     }
 }
